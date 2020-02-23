@@ -3,8 +3,8 @@ import 'package:flutter_login_page_ui/screens/utils/util.dart';
 
 
 class HomeFragment extends StatefulWidget {
-   List<String> list= Util.mediaList;
-   List<String> listDe = Util.descriptionList;
+   final List<String> list= Util.mediaList;
+   final List<String> listDe = Util.descriptionList;
 
 
   @override
@@ -17,7 +17,7 @@ class ListItems{
 }
 class _HomeFragmentState extends State<HomeFragment> {
 
-  int _selectedIndex = 0;
+  // int _selectedIndex = 0;
 
 
   @override

@@ -14,5 +14,5 @@ void main() => runApp(new MaterialApp(
     ThemeData(primaryColor: Colors.deepPurple,primarySwatch: Colors.deepPurple,
         primaryColorDark: Colors.deepPurple),
     debugShowCheckedModeBanner: false,
-    home: LoginScreen(),
+    home: HomeScreen(),
     routes: routes));

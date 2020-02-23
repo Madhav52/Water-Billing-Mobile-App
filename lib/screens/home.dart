@@ -20,14 +20,15 @@ class DrawerItem {
 
 class HomeScreen extends StatefulWidget {
   final drawerItems = [
-    new DrawerItem("About us", Icons.print),
-    new DrawerItem("Our Mission", Icons.home),
-    new DrawerItem("Our Vision", Icons.home),
-    new DrawerItem("Setting", Icons.settings),
+    new DrawerItem("Home", Icons.home),
+    new DrawerItem("About Us", Icons.supervisor_account),
+    new DrawerItem("Our Mission", Icons.my_location),
+    new DrawerItem("Our Vision", Icons.wb_sunny),
+    // new DrawerItem("Setting", Icons.settings),
     new DrawerItem("Contact us", Icons.contacts),
-    new DrawerItem("Rate Us", Icons.home),
-    new DrawerItem("Privacy Policy", Icons.home),
-    new DrawerItem("About App", Icons.home),
+    new DrawerItem("Rate Us", Icons.thumb_up),
+    new DrawerItem("Privacy Policy", Icons.verified_user),
+    new DrawerItem("About App", Icons.touch_app),
     
   ];
 
@@ -86,8 +87,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 // phoneNumber: new Text("9865373625"),
 
                 currentAccountPicture: new CircleAvatar(
-                  maxRadius: 24.0,
+                  maxRadius: 50.0,
                   backgroundColor: Colors.transparent,
+                  // borderRadius: BorderRadius.all(Radius.circular(50.0)),
                   child: new Center(
                     child: new Image.asset(
                       "assets/madhav.jpg",
