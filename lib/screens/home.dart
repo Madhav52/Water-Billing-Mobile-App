@@ -1,15 +1,17 @@
 
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/contact_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/home_fragment.dart';
-import 'package:flutter_login_page_ui/screens/fragments/setting.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
+import 'package:carousel_pro/carousel_pro.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 class DrawerItem {
@@ -42,40 +44,66 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData media = MediaQuery.of(context);
 
+    final Size screenSize = media.size;
+              
     var drawerOptions = <Widget>[];
     for (var i = 0; i < widget.drawerItems.length; i++) {
       var d = widget.drawerItems[i];
+      var listTile = new ListTile(
+        leading: new Icon(
+            d.icon,
+            color: Colors.deepPurple
+        ),
+        
+        title: new Text(
+            d.title,
+            style: new TextStyle(
+                color: Colors.deepPurple,
+                fontWeight: FontWeight.bold
+            )),
+            
+        selected: i == _selectedIndex,
+        onTap: () => _onSelectItem(i),
+      );
+      // actions: <Widget>[
+      //   IconButton(icon:Icon(Icons.notifications), onPressed: (){})        
+      // ];
       drawerOptions.add(
         new Column(
           children: <Widget>[
-            new ListTile(
-              leading: new Icon(
-                  d.icon,
-                  color: Colors.deepPurple
-              ),
-              title: new Text(
-                  d.title,
-                  style: new TextStyle(
-                      color: Colors.deepPurple,
-                      fontWeight: FontWeight.bold
-                  )),
-              selected: i == _selectedIndex,
-              onTap: () => _onSelectItem(i),
-            ),
+            listTile,
             new Divider(
               color: Colors.deepPurple,
               height: 2.0,
             )
           ],
         )
-
-
       );
+      
     }
+    
+    Widget image_slider_carousel = Container(
+      height: 250,
+      child: new Carousel(
+        boxFit: BoxFit.fill,
+        images: [
+          new AssetImage("assets/water.png"),
+          new AssetImage("assets/water.png"),
+          new AssetImage("assets/water.png"),
+          
+        ],
+      ),
+    );
+
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.drawerItems[_selectedIndex].title),
+        actions: <Widget>[
+          new IconButton(icon: Icon(Icons.notifications, color: Colors.white), onPressed: null),
+          
+        ],
         elevation: defaultTargetPlatform== TargetPlatform.android?5.0:0.0,
       ),
       drawer: new Drawer(
@@ -103,65 +131,189 @@ class _HomeScreenState extends State<HomeScreen> {
             new Column(
               children: drawerOptions
             ),
-            //   new ListTile(
-            //   title: new Text(
-            //       "Home",
-            //        style: new TextStyle(
-            //         color: Colors.deepPurple,
-            //         fontWeight: FontWeight.bold
-            //     ),
-            //   ),
-            //   leading: new Icon(Icons.home,color: Colors.deepPurple,),
-            //   selected: true,
-            //  // onTap: ()=>Navigator.of(context).pop(),
-            //   onTap: ()=>NavigationRouter.switchToProfile(context),
-            // ),
-            // new Divider(
-            //   color: Colors.deepPurple,
-            //   height: 2.0,
-            // ),
-            // new ListTile(
-            //   title: new Text(
-            //       "Profile",
-            //        style: new TextStyle(
-            //         color: Colors.deepPurple,
-            //         fontWeight: FontWeight.bold
-            //     ),
-            //   ),
-            //   leading: new Icon(Icons.person,color: Colors.deepPurple,),
-            // ),
-            // new Divider(
-            //   color: Colors.deepPurple,
-            //   height: 2.0,
-            // ),
-            // new ListTile(
-            //   title: new Text(
-            //       "Setting",
-            //        style: new TextStyle(
-            //         color: Colors.deepPurple,
-            //         fontWeight: FontWeight.bold
-            //     ),
-            //   ),
-            //   leading: new Icon(Icons.settings,color: Colors.deepPurple,),
-            // ),
-            // new Divider(
-            //   color: Colors.deepPurple,
-            //   height: 2.0,
-            // ),
-            // new ListTile(
-            //   title: new Text(
-            //     'Activity',
-            //     style: new TextStyle(
-            //       color: Colors.deepPurple,
-            //       fontWeight: FontWeight.bold
-            //     ),
-            //   ),
-            //   leading: new Icon(Icons.print,color: Colors.deepPurple,),
-            // )
           ],
         ),
       ),
-      body: _setDrawerItemWidget(_selectedIndex)
+      body: new Container(
+        width: screenSize.width,
+        child: new ListView(
+        children: <Widget>[
+          image_slider_carousel,
+          new Container(
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              
+              children: <Widget>[
+                InkWell(
+                  onTap: (){},
+                  child:Container(
+                    margin: EdgeInsets.only(top:40),
+                    height:170.0,
+                    width: 200.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        
+                      ),
+                      margin: EdgeInsets.all(20),
+                      elevation: 10.0,
+                      color: Colors.deepPurpleAccent,
+                      child:Container(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.people, size: 40.0, color: Colors.white), 
+                              Text("Committe",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Open-Sans",
+                                fontSize: 20,
+                                letterSpacing: 1.5)
+                              ),
+                            ],
+                          )
+                          
+                          
+                        )
+
+                      ),
+                      
+                      
+                      
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){},
+                  child:Container(
+                    margin: EdgeInsets.only(top:40),
+                    height:170.0,
+                    width: 200.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        
+                      ),
+                      margin: EdgeInsets.all(20),
+                      elevation: 10.0,
+                      color: Colors.deepPurpleAccent,
+                      child:Container(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.note_add, size: 40.0, color: Colors.white), 
+                              Text("Tarrif Guide",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Open-Sans",
+                                fontSize: 20,
+                                letterSpacing: 1.5)
+                              ),
+                            ],
+                          )
+                   
+                        )
+                      ),
+                   
+                    ),
+                  ),
+                ),
+                
+              ]
+
+            ),
+          ),
+          new Container(
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              
+              children: <Widget>[
+                InkWell(
+                  onTap: (){},
+                  
+                  child:Container(
+                    margin: EdgeInsets.only(top:20),
+                    height:170.0,
+                    width: 200.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        
+                      ),
+                      margin: EdgeInsets.all(20),
+                      elevation: 10.0,
+                      color: Colors.deepPurpleAccent,
+                      child:Container(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              FaIcon(FontAwesomeIcons.cogs, size: 40.0, color: Colors.white), 
+                              Text("Our Service",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Open-Sans",
+                                fontSize: 20,
+                                letterSpacing: 1.5)
+                              ),
+                            ],
+                          )
+                          
+                        )
+                      ),    
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){},
+                  child:Container(
+                    margin: EdgeInsets.only(top:20),
+                    height:170.0,
+                    width: 200.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        
+                      ),
+                      margin: EdgeInsets.all(20),
+                      elevation: 10.0,
+                      color: Colors.deepPurpleAccent,
+                      child:Container(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.perm_contact_calendar, size: 40.0, color: Colors.white), 
+                              Text("Contact Us",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Open-Sans",
+                                fontSize: 20,
+                                letterSpacing: 1.5)
+                              ),
+                            ],
+                          )
+
+                        )
+                      ),
+                    ),
+                  ),
+                ), 
+              ]
+            ),
+          ), 
+        ]
+      ),
+      
+      
+      )
+      // _setDrawerItemWidget(_selectedIndex)
+      
+      
+      
+      
     );
 
 
