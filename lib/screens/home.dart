@@ -11,6 +11,7 @@ import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter_login_page_ui/screens/home_screens/tarrif.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
@@ -185,7 +186,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Tarrif()), );
+                  },
                   child:Container(
                     margin: EdgeInsets.only(top:40),
                     height:170.0,
@@ -288,10 +293,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               Icon(Icons.perm_contact_calendar, size: 40.0, color: Colors.white), 
                               Text("Contact Us",
                               style: TextStyle(
+                                
                                 color: Colors.white,
                                 fontFamily: "Open-Sans",
                                 fontSize: 20,
-                                letterSpacing: 1.5)
+                                letterSpacing: 1.5,
+                                )
                               ),
                             ],
                           )
