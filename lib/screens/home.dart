@@ -14,7 +14,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/service.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/tarrif.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:flutter_login_page_ui/screens/home_screens/contactus.dart';
 
 class DrawerItem {
   String title;
@@ -277,7 +277,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Contact()), );
+                  },
                   child:Container(
                     margin: EdgeInsets.only(top:20),
                     height:170.0,
