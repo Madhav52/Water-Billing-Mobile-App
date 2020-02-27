@@ -153,7 +153,7 @@ class _ContactState extends State<Contact> {
                     width: 350.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
                       elevation: 10.0,

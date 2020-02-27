@@ -1,4 +1,3 @@
-
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +9,8 @@ import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
-import 'package:carousel_pro/carousel_pro.dart';
-import 'package:flutter_login_page_ui/screens/home_screens/service.dart';
-import 'package:flutter_login_page_ui/screens/home_screens/tarrif.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_login_page_ui/screens/home_screens/contactus.dart';
-import 'package:flutter_login_page_ui/screens/home_screens/committe.dart';
+import 'package:mdi/mdi.dart';
+
 
 class DrawerItem {
   String title;
@@ -23,7 +18,7 @@ class DrawerItem {
   DrawerItem(this.title, this.icon);
 }
 
-class HomeScreen extends StatefulWidget {
+class CustomerDashboard extends StatefulWidget {
   final drawerItems = [
     new DrawerItem("Home", Icons.home),
     new DrawerItem("About Us", Icons.supervisor_account),
@@ -38,10 +33,10 @@ class HomeScreen extends StatefulWidget {
   ];
 
   @override
-  _HomeScreenState createState() => new _HomeScreenState();
+  _CustomerDashboardState createState() => new _CustomerDashboardState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _CustomerDashboardState extends State<CustomerDashboard> {
 
   int _selectedIndex = 0;
 
@@ -112,12 +107,10 @@ class _HomeScreenState extends State<HomeScreen> {
             new UserAccountsDrawerHeader(
                 accountName: new Text("Madhav"),
                 accountEmail: new Text("Madhav@gmail.com"),
-                // phoneNumber: new Text("9865373625"),
 
                 currentAccountPicture: new CircleAvatar(
                   maxRadius: 50.0,
                   backgroundColor: Colors.transparent,
-                  // borderRadius: BorderRadius.all(Radius.circular(50.0)),
                   child: new Center(
                     child: new Image.asset(
                       "assets/madhav.jpg",
@@ -136,30 +129,80 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: new Container(
         width: screenSize.width,
-        child: new ListView(
+        height: screenSize.height,
+        child: new Stack( 
         children: <Widget>[
-          image_slider_carousel,
-          new Container(
+          Container(
+            padding: EdgeInsets.only(left:10),
+            height: 150,
+            width: 500,
+            decoration: BoxDecoration(
+              color: Colors.indigoAccent,
+            ),
+            child: Padding(padding: EdgeInsets.only(top:40),
+            child:Text("Welcome! UserName",
+              style: TextStyle(
+                color: Colors.black,
+                fontFamily: "Open-Sans",
+                fontWeight: FontWeight.w700,
+                fontSize: 30,
+                letterSpacing: 1.5)
+              ),
+            ),
+            
+          ),
+            new Container(
+              margin: EdgeInsets.only(top:100, left:60),
+              height:90.0,
+              width: 300.0,
+              child: Center(
+                child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  
+                ),
+                elevation: 10.0,
+                child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(30.0,22,30,0),
+                    child: Text("Good Morning!",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: "Open-Sans",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                        letterSpacing: 1.5)
+                      ),
+                  
+                    ),
+                  ]
+                ),
+              ),
+            ),
+            ),
+            new Container(
             child: new Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               
               children: <Widget>[
                 InkWell(
                   onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Committe()), );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => Committe()), );
                   },
                   child:Container(
-                    margin: EdgeInsets.only(top:40),
-                    height:170.0,
+                    margin: EdgeInsets.only(top:210),
+                    height:150.0,
                     width: 200.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
-                      margin: EdgeInsets.all(20),
+                      margin: EdgeInsets.all(10),
                       elevation: 10.0,
                       color: Colors.deepPurpleAccent,
                       child:Container(
@@ -168,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Icon(Icons.people, size: 40.0, color: Colors.white), 
-                              Text("Committe",
+                              Text("View Profile",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Open-Sans",
@@ -184,20 +227,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 InkWell(
                   onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Tarrif()), );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => Tarrif()), );
                     },
                   child:Container(
-                    margin: EdgeInsets.only(top:40),
-                    height:170.0,
+                    margin: EdgeInsets.only(top:210),
+                    height:150.0,
                     width: 200.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
-                      margin: EdgeInsets.all(20),
+                      margin: EdgeInsets.all(10),
                       elevation: 10.0,
                       color: Colors.deepPurpleAccent,
                       child:Container(
@@ -205,8 +248,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Icon(Icons.note_add, size: 40.0, color: Colors.white), 
-                              Text("Tarrif Guide",
+                              Icon(Mdi.fileDocumentBoxMultiple, size: 40.0, color: Colors.white), 
+                              Text("Bill Statement",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Open-Sans",
@@ -230,21 +273,21 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 InkWell(
                   onTap: (){
-                    Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ServiceScreen()), );
+              //       Navigator.push(
+              // context,
+              // MaterialPageRoute(builder: (context) => ServiceScreen()), );
                   },
                   
                   child:Container(
-                    margin: EdgeInsets.only(top:20),
-                    height:170.0,
+                    margin: EdgeInsets.only(top:360),
+                    height:150.0,
                     width: 200.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
-                      margin: EdgeInsets.all(20),
+                      margin: EdgeInsets.all(10),
                       elevation: 10.0,
                       color: Colors.deepPurpleAccent,
                       child:Container(
@@ -252,8 +295,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              FaIcon(FontAwesomeIcons.cogs, size: 40.0, color: Colors.white), 
-                              Text("Our Service",
+                              Icon(Icons.monetization_on, size: 40.0, color: Colors.white), 
+                              Text("Make Payment",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Open-Sans",
@@ -269,20 +312,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 InkWell(
                   onTap: (){
-                    Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Contact()), );
+              //       Navigator.push(
+              // context,
+              // MaterialPageRoute(builder: (context) => Contact()), );
                   },
                   child:Container(
-                    margin: EdgeInsets.only(top:20),
-                    height:170.0,
+                    margin: EdgeInsets.only(top:360),
+                    height:150.0,
                     width: 200.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
-                      margin: EdgeInsets.all(20),
+                      margin: EdgeInsets.all(10),
                       elevation: 10.0,
                       color: Colors.deepPurpleAccent,
                       child:Container(
@@ -290,14 +333,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Icon(Icons.perm_contact_calendar, size: 40.0, color: Colors.white), 
-                              Text("Contact Us",
+                              Icon(Icons.multiline_chart, size: 40.0, color: Colors.white), 
+                              Text("Payment History",
                               style: TextStyle(
                                 
                                 color: Colors.white,
                                 fontFamily: "Open-Sans",
                                 fontSize: 20,
-                                letterSpacing: 1.5,
+                                letterSpacing: 1.2,
                                 )
                               ),
                             ],
@@ -309,23 +352,100 @@ class _HomeScreenState extends State<HomeScreen> {
                 ), 
               ]
             ),
-          ), 
-        ]
+          ),
+          new Container(
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              
+              children: <Widget>[
+                InkWell(
+                  onTap: (){
+              //       Navigator.push(
+              // context,
+              // MaterialPageRoute(builder: (context) => ServiceScreen()), );
+                  },
+                  
+                  child:Container(
+                    margin: EdgeInsets.only(top:510),
+                    height:150.0,
+                    width: 200.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        
+                      ),
+                      margin: EdgeInsets.all(10),
+                      elevation: 10.0,
+                      color: Colors.deepPurpleAccent,
+                      child:Container(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.feedback, size: 40.0, color: Colors.white), 
+                              Text("Feedback",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Open-Sans",
+                                fontSize: 20,
+                                letterSpacing: 1.2)
+                              ),
+                            ],
+                          )
+                        )
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){
+              //       Navigator.push(
+              // context,
+              // MaterialPageRoute(builder: (context) => Contact()), );
+                  },
+                  child:Container(
+                    margin: EdgeInsets.only(top:510),
+                    height:150.0,
+                    width: 200.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        
+                      ),
+                      margin: EdgeInsets.all(10),
+                      elevation: 10.0,
+                      color: Colors.deepPurpleAccent,
+                      child:Container(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Mdi.commentAccount, size: 40.0, color: Colors.white), 
+                              Text("Complaints",
+                              style: TextStyle(
+                                
+                                color: Colors.white,
+                                fontFamily: "Open-Sans",
+                                fontSize: 20,
+                                letterSpacing: 1.2,
+                                )
+                              ),
+                            ],
+                          )
+                        )
+                      ),
+                    ),
+                  ),
+                ), 
+              ]
+            ),
+          ),  
+          ]
+        ),
       ),
-      
-      
-      )
-      // _setDrawerItemWidget(_selectedIndex)
-      
-      
-      
-      
+        // _setDrawerItemWidget(_selectedIndex)
     );
-
-
   }
-
-
   _setDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
