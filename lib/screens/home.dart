@@ -11,6 +11,7 @@ import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter_login_page_ui/screens/home_screens/service.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/tarrif.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -236,7 +237,11 @@ class _HomeScreenState extends State<HomeScreen> {
               
               children: <Widget>[
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ServiceScreen()), );
+                  },
                   
                   child:Container(
                     margin: EdgeInsets.only(top:20),
