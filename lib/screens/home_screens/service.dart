@@ -10,7 +10,8 @@ import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
-import 'package:carousel_pro/carousel_pro.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mdi/mdi.dart';
 
 
 class DrawerItem {
@@ -144,7 +145,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
               children: <Widget>[
                   new Container(
                     margin: EdgeInsets.only(top:30),
-                    height:350.0,
+                    height:420.0,
                     width: 350.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -179,72 +180,115 @@ class _ServiceScreenState extends State<ServiceScreen> {
                             ),
                          
                          ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,15.0,0.0,0),
-                           child: Text("View Payment Details",
-                            style: TextStyle(
-                              
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
-                           child: Text("Track Payment History",
-                            style: TextStyle(
-                              
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
-                           child: Text("Tarrif Calculator",
-                            style: TextStyle(
-                              
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
-                           child: Text("Online Payment",
-                            style: TextStyle(
-                              
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
-                           child: Text("Meter Reading",
-                            style: TextStyle(
-                              
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
-                           child: Text("Feedback and Complaints",
-                            style: TextStyle(
-                              
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
+                         Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, right:20, top:20),
+                                 child: Icon(Icons.payment, size: 30.0, color: Colors.black),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:20),
+                                child:Text("View Payment Details",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 20,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, right:20, top:10),
+                                 child: Icon(Icons.multiline_chart, size: 25.0, color: Colors.black), 
+                                 
+                              ),
+                              Padding(padding: EdgeInsets.only(top:10),
+                                child:Text("Track Payment History",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 20,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, right:20, top:10),
+                                 child: Icon(Mdi.calculator, size: 30.0, color: Colors.black),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:10),
+                                child:Text("Tarrif Calculator",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 20,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, right:20, top:10),
+                                 child: Icon(Icons.monetization_on, size: 30.0, color: Colors.black),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:10),
+                                child:Text("Online Payment",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 20,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, right:20, top:10),
+                                 child: Icon(Icons.chrome_reader_mode, size: 30.0, color: Colors.black),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:10),
+                                child:Text("Meter Reading",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 20,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, right:20, top:10),
+                                 child: Icon(Icons.feedback, size: 30.0, color: Colors.black),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:10),
+                                child:Text("Feedback & Complaints",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 20,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                            ],
+                          ),
                        ], 
                       )
                     ),

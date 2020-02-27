@@ -26,6 +26,7 @@ dependencies:
   flutter_screenutil: ^0.4.2
   carousel_pro: ^1.0.0
   font_awesome_flutter: ^8.7.0
+  mdi: ^1.0.1
 
 dev_dependencies:
   flutter_test:

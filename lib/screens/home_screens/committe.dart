@@ -11,11 +11,8 @@ import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:flutter_login_page_ui/screens/home_screens/service.dart';
-import 'package:flutter_login_page_ui/screens/home_screens/tarrif.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_login_page_ui/screens/home_screens/contactus.dart';
-import 'package:flutter_login_page_ui/screens/home_screens/committe.dart';
+
 
 class DrawerItem {
   String title;
@@ -23,7 +20,7 @@ class DrawerItem {
   DrawerItem(this.title, this.icon);
 }
 
-class HomeScreen extends StatefulWidget {
+class Committe extends StatefulWidget {
   final drawerItems = [
     new DrawerItem("Home", Icons.home),
     new DrawerItem("About Us", Icons.supervisor_account),
@@ -38,10 +35,10 @@ class HomeScreen extends StatefulWidget {
   ];
 
   @override
-  _HomeScreenState createState() => new _HomeScreenState();
+  _CommitteState createState() => new _CommitteState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _CommitteState extends State<Committe> {
 
   int _selectedIndex = 0;
 
@@ -136,208 +133,188 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: new Container(
         width: screenSize.width,
-        child: new ListView(
+        height: screenSize.height,
+        child: new ListView( 
         children: <Widget>[
-          image_slider_carousel,
           new Container(
-            child: new Row(
+            child: new Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               
               children: <Widget>[
+                // Container(
+                //   child: Padding(padding: EdgeInsets.only(top:40),
+                //   child:Text("Committes",
+                //     style: TextStyle(
+                //       color: Colors.black,
+                //       fontFamily: "Open-Sans",
+                //       fontWeight: FontWeight.w800,
+                //       fontSize: 30,
+                //       letterSpacing: 1.5)
+                //     ),
+                //   ),
+                  
+                // ),
                 InkWell(
                   onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Committe()), );
+                    
                   },
                   child:Container(
                     margin: EdgeInsets.only(top:40),
-                    height:170.0,
-                    width: 200.0,
+                    height:90.0,
+                    width: 500.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
-                      margin: EdgeInsets.all(20),
+                      margin: EdgeInsets.fromLTRB(20,10,20,0),
                       elevation: 10.0,
                       color: Colors.deepPurpleAccent,
                       child:Container(
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              Icon(Icons.people, size: 40.0, color: Colors.white), 
-                              Text("Committe",
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, right:20),
+                                 child: Icon(Icons.people_outline, size: 40.0, color: Colors.white),
+                              ),
+                              
+                              Text("Board Members",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Open-Sans",
-                                fontSize: 20,
+                                fontSize: 25,
                                 letterSpacing: 1.5)
                               ),
                             ],
-                          )
-                          
-                          
-                        )
-
+                          ),  
                       ),
-                      
-                      
-                      
                     ),
                   ),
                 ),
                 InkWell(
                   onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Tarrif()), );
-                    },
+                    
+                  },
                   child:Container(
-                    margin: EdgeInsets.only(top:40),
-                    height:170.0,
-                    width: 200.0,
+                    margin: EdgeInsets.only(top:20),
+                    height:90.0,
+                    width: 500.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
-                      margin: EdgeInsets.all(20),
+                      margin: EdgeInsets.fromLTRB(20,10,20,0),
                       elevation: 10.0,
                       color: Colors.deepPurpleAccent,
                       child:Container(
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              Icon(Icons.note_add, size: 40.0, color: Colors.white), 
-                              Text("Tarrif Guide",
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, right:20),
+                                 child: Icon(Icons.supervisor_account, size: 40.0, color: Colors.white),
+                              ),
+                              
+                              Text("Regional Members",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Open-Sans",
-                                fontSize: 20,
+                                fontSize: 25,
                                 letterSpacing: 1.5)
                               ),
                             ],
-                          )
-                   
-                        )
+                          ),  
                       ),
-                   
                     ),
                   ),
                 ),
-                
+                InkWell(
+                  onTap: (){
+                    
+                  },
+                  child:Container(
+                    margin: EdgeInsets.only(top:20),
+                    height:90.0,
+                    width: 500.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        
+                      ),
+                      margin: EdgeInsets.fromLTRB(20,10,20,0),
+                      elevation: 10.0,
+                      color: Colors.deepPurpleAccent,
+                      child:Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, right:20),
+                                 child: Icon(Icons.group_add, size: 40.0, color: Colors.white),
+                              ),
+                              
+                              Text("Staffs",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Open-Sans",
+                                fontSize: 25,
+                                letterSpacing: 1.5)
+                              ),
+                            ],
+                          ),  
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){
+                    
+                  },
+                  child:Container(
+                    margin: EdgeInsets.only(top:20),
+                    height:90.0,
+                    width: 500.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        
+                      ),
+                      margin: EdgeInsets.fromLTRB(20,10,20,0),
+                      elevation: 10.0,
+                      color: Colors.deepPurpleAccent,
+                      child:Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, right:20),
+                                 child: Icon(Icons.people, size: 40.0, color: Colors.white),
+                              ),
+                              
+                              Text("Advisors",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Open-Sans",
+                                fontSize: 25,
+                                letterSpacing: 1.5)
+                              ),
+                            ],
+                          ),  
+                      ),
+                    ),
+                  ),
+                ),
               ]
-
             ),
           ),
-          new Container(
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              
-              children: <Widget>[
-                InkWell(
-                  onTap: (){
-                    Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ServiceScreen()), );
-                  },
-                  
-                  child:Container(
-                    margin: EdgeInsets.only(top:20),
-                    height:170.0,
-                    width: 200.0,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        
-                      ),
-                      margin: EdgeInsets.all(20),
-                      elevation: 10.0,
-                      color: Colors.deepPurpleAccent,
-                      child:Container(
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              FaIcon(FontAwesomeIcons.cogs, size: 40.0, color: Colors.white), 
-                              Text("Our Service",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: "Open-Sans",
-                                fontSize: 20,
-                                letterSpacing: 1.5)
-                              ),
-                            ],
-                          )
-                          
-                        )
-                      ),    
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: (){
-                    Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Contact()), );
-                  },
-                  child:Container(
-                    margin: EdgeInsets.only(top:20),
-                    height:170.0,
-                    width: 200.0,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        
-                      ),
-                      margin: EdgeInsets.all(20),
-                      elevation: 10.0,
-                      color: Colors.deepPurpleAccent,
-                      child:Container(
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(Icons.perm_contact_calendar, size: 40.0, color: Colors.white), 
-                              Text("Contact Us",
-                              style: TextStyle(
-                                
-                                color: Colors.white,
-                                fontFamily: "Open-Sans",
-                                fontSize: 20,
-                                letterSpacing: 1.5,
-                                )
-                              ),
-                            ],
-                          )
-
-                        )
-                      ),
-                    ),
-                  ),
-                ), 
-              ]
-            ),
-          ), 
         ]
+        ),
       ),
-      
-      
-      )
       // _setDrawerItemWidget(_selectedIndex)
-      
-      
-      
-      
     );
-
-
   }
-
-
   _setDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:

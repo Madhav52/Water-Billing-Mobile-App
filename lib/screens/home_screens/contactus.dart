@@ -133,7 +133,12 @@ class _ContactState extends State<Contact> {
           ],
         ),
       ),
-      body: new Container(
+      body: new GestureDetector(
+        onTap: () {
+        // call this method here to hide soft keyboard
+        FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Container(
         width: screenSize.width,
         child: new ListView( 
         children: <Widget>[
@@ -156,7 +161,7 @@ class _ContactState extends State<Contact> {
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: <Widget>[
                          Container(
-                           padding: EdgeInsets.only(top: 20),
+                           padding: EdgeInsets.only(top: 30),
                            child: Center(
                            child: Text("Contact Us",
                             style: TextStyle(
@@ -169,14 +174,16 @@ class _ContactState extends State<Contact> {
                            ),
                           ),
                           Container(
-                           padding: EdgeInsets.fromLTRB(30,10,30,10),
+                           padding: EdgeInsets.fromLTRB(30,20,30,20),
                            child: Center(
                            child: Text("Hi! If you have any queries or confusion regarding this app, just feel free to fill the form and send to us.",
+                           textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.2)
+                              fontFamily: "Roboto",
+                              fontSize: 18,
+                              
+                              letterSpacing: 1.0)
                             ),
                            ),
                           ),
@@ -186,7 +193,7 @@ class _ContactState extends State<Contact> {
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
-                                
+                                icon: Icon(Icons.person),
                                 labelText: "Full Name*",
                                 hintText: 'Enter your full name.'
                               ),
@@ -198,7 +205,7 @@ class _ContactState extends State<Contact> {
                               keyboardType: TextInputType.number,
                               autofocus: false,
                               decoration: InputDecoration(
-                                
+                                icon: Icon(Icons.phonelink_ring),
                                 labelText: "Phone Number*",
                                 hintText: 'Enter Your Valid Phone No.'
                               ),
@@ -210,7 +217,7 @@ class _ContactState extends State<Contact> {
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
-                                
+                                icon: Icon(Icons.subject),
                                 labelText: "Subject*",
                                 hintText: 'Subject For Contacting Us.'
                               ),
@@ -223,23 +230,36 @@ class _ContactState extends State<Contact> {
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
-                                
+                                icon: Icon(Icons.message),
                                 labelText: "Message",
                                 hintText: 'Write Your Message Here.'
                               ),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.all(30),
+                            padding: EdgeInsets.only(top:30),
                             child: Center(
-                              child: RaisedButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'Submit',
-                                style: TextStyle(fontSize: 20)
+                              child: ButtonTheme(
+                                minWidth: 120.0,
+                                height: 55.0,
+                                child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(30.0),
+                                ),
+                                color: Colors.deepPurpleAccent,
+                                  onPressed: () {},
+                                  child: const Text(
+                                    'Submit',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: "Open-Sans",
+                                      color: Colors.white
+                                      )
+                                    
+                                  ),
+                                ),
                               ),
                             ),
-                            )
                             
                           ),
                        ], 
@@ -251,6 +271,7 @@ class _ContactState extends State<Contact> {
             ),
         ]
         ),
+      ),
       ),
       // _setDrawerItemWidget(_selectedIndex)
     );

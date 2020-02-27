@@ -135,179 +135,202 @@ class _TarrifState extends State<Tarrif> {
           ],
         ),
       ),
-      body: new Container(
-        width: screenSize.width,
-        child: new ListView( 
-        children: <Widget>[
-          new Container(
-            child: new Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              
-              children: <Widget>[
-                  new Container(
-                    margin: EdgeInsets.only(top:30),
-                    height:300.0,
-                    width: 350.0,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        
+      body: new GestureDetector(
+        onTap: () {
+        // call this method here to hide soft keyboard
+        FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Container(
+          width: screenSize.width,
+          height: screenSize.height,
+            child: new ListView( 
+            children: <Widget>[
+              new Container(
+                child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  
+                  children: <Widget>[
+                      new Container(
+                        margin: EdgeInsets.only(top:30),
+                        height:300.0,
+                        width: 350.0,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            
+                          ),
+                          elevation: 10.0,
+                          child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(30.0,30.0,0.0,20),
+                              child: Text("FY 2020/21",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Open-Sans",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30,
+                                  letterSpacing: 1.5)
+                                ),
+                            
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
+                              child: Text("Community Tap",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Open-Sans",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                  letterSpacing: 1.5)
+                                ),
+                            
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
+                              child: Text("0 to 10 units - Rs. 200",
+                                style: TextStyle(
+                                  
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 20,
+                                  letterSpacing: 1.5)
+                                ),
+                            
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
+                              child: Text("11 to 20 units - Rs. 25/unit",
+                                style: TextStyle(
+                                  
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 20,
+                                  letterSpacing: 1.5)
+                                ),
+                            
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
+                              child: Text("21 to 30 units - Rs. 30/unit",
+                                style: TextStyle(
+                                  
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 20,
+                                  letterSpacing: 1.5)
+                                ),
+                            
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
+                              child: Text("More than 30 units - Rs. 35/unit",
+                                style: TextStyle(
+                                  
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 20,
+                                  letterSpacing: 1.5)
+                                ),
+                            
+                            )
+                          ], 
+                          )
+                        ),
                       ),
-                      elevation: 10.0,
-                      child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: <Widget>[
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,30.0,0.0,20),
-                           child: Text("FY 2020/21",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              letterSpacing: 1.5)
+                      new Container(
+                        margin: EdgeInsets.only(top:20),
+                        height:300.0,
+                        width: 350.0,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            
+                          ),
+                          elevation: 10.0,
+                          child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(30.0,30.0,0.0,20),
+                              child: Text("Tarrif Calculator",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Open-Sans",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30,
+                                  letterSpacing: 1.5)
+                                ),
+                            
                             ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
-                           child: Text("Community Tap",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
-                           child: Text("0 to 10 units - Rs. 200",
-                            style: TextStyle(
-                              
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
-                           child: Text("11 to 20 units - Rs. 25/unit",
-                            style: TextStyle(
-                              
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
-                           child: Text("21 to 30 units - Rs. 30/unit",
-                            style: TextStyle(
-                              
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
-                           child: Text("More than 30 units - Rs. 35/unit",
-                            style: TextStyle(
-                              
-                              fontFamily: "Open-Sans",
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         )
-                       ], 
-                      )
-                    ),
-                  ),
-                  new Container(
-                    margin: EdgeInsets.only(top:20),
-                    height:300.0,
-                    width: 350.0,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        
-                      ),
-                      elevation: 10.0,
-                      child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: <Widget>[
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,30.0,0.0,20),
-                           child: Text("Tarrif Calculator",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Center(
-                           child: new Column(
-                               children: <Widget>[       
-                                 Container(
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    
-                                    border: Border.all(color: Colors.blueAccent,
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(5.0) //                 <--- border radius here
-                                    ),
-                                  ),
-                                  child: Text("Total: Rs. 520",
-                                  style: TextStyle(
-                                    fontFamily: "Open-Sans",
-                                    fontSize: 20,
-                                    letterSpacing: 1.5)
-                                    ),
-                                  ),
-                                 
-                                  Container(
-                                    width: 100,
-                                    child: TextField(
-                                      keyboardType: TextInputType.number,
-                                      autofocus: false,
-                                      decoration: InputDecoration(
+                            Center(
+                              child: new Column(
+                                  children: <Widget>[       
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
                                         
-                                        labelText: "Enter the unit.",
-                                        //hintText: 'Enter the unit.'
+                                        border: Border.all(color: Colors.deepPurpleAccent,
+                                        ),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5.0) //                 <--- border radius here
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.all(10),
+                                      child: Text("Total: Rs. 520",
+                                      style: TextStyle(
+                                        fontFamily: "Open-Sans",
+                                        fontSize: 20,
+                                        letterSpacing: 1.5)
+                                        ),
+                                      ),
+                                    
+                                      Container(
+                                        width: 100,
+                                        child: TextField(
+                                          keyboardType: TextInputType.number,
+                                          autofocus: false,
+                                          decoration: InputDecoration(
+                                            
+                                            labelText: "Enter the unit.",
+                                            //hintText: 'Enter the unit.'
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                padding: EdgeInsets.only(top:30),
+                                child: Center(
+                                  child: ButtonTheme(
+                                    minWidth: 120.0,
+                                    height: 45.0,
                                     child: RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: new BorderRadius.circular(30.0),
+                                    ),
+                                    color: Colors.deepPurpleAccent,
                                       onPressed: () {},
                                       child: const Text(
                                         'Calculate',
-                                        style: TextStyle(fontSize: 20)
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontFamily: "Open-Sans",
+                                          color: Colors.white
+                                          )
+                                        
                                       ),
                                     ),
                                   ),
-                               ],
-                           ),
-                         ),
-                       ],
+                                ),
+                                
+                              ),
+                                  ],
+                              ),
+                            ),
+                          ],
+                          ),
+                        ),
                       ),
-                    ),
+                  ]
                   ),
-              ]
-              ),
-            ),
-        ]
+                ),
+            ]
+          ),
         ),
       ),
       // _setDrawerItemWidget(_selectedIndex)
