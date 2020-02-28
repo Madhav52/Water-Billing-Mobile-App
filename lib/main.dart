@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_page_ui/screens/staffs/staff_dashboard.dart';
+import 'package:flutter_login_page_ui/screens/customer/customer_dashboard.dart';
 import 'package:flutter_login_page_ui/screens/login.dart';
 import 'package:flutter_login_page_ui/screens/home.dart';
 
@@ -15,5 +15,5 @@ void main() => runApp(new MaterialApp(
     ThemeData(primaryColor: Colors.deepPurple,primarySwatch: Colors.deepPurple,
         primaryColorDark: Colors.deepPurple),
     debugShowCheckedModeBanner: false,
-    home: StaffDashboard(),
+    home: CustomerDashboard(),
     routes: routes));

@@ -10,6 +10,7 @@ import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
 import 'package:mdi/mdi.dart';
+import 'package:flutter_login_page_ui/screens/customer/view_profile.dart';
 
 
 class DrawerItem {
@@ -130,9 +131,11 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
       body: new Container(
         width: screenSize.width,
         height: screenSize.height,
-        child: new Stack( 
+        child: new Column( 
         children: <Widget>[
-          Container(
+          new Stack(
+            children: <Widget>[
+              Container(
             padding: EdgeInsets.only(left:10),
             height: 150,
             width: 500,
@@ -182,6 +185,10 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               ),
             ),
             ),
+            ],
+          ),
+        
+        
             new Container(
             child: new Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -189,12 +196,12 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               children: <Widget>[
                 InkWell(
                   onTap: (){
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => Committe()), );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ViewProfileCust()), );
                   },
                   child:Container(
-                    margin: EdgeInsets.only(top:210),
+                    margin: EdgeInsets.only(top:10),
                     height:150.0,
                     width: 200.0,
                     child: Card(
@@ -232,7 +239,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                     //   MaterialPageRoute(builder: (context) => Tarrif()), );
                     },
                   child:Container(
-                    margin: EdgeInsets.only(top:210),
+                    margin: EdgeInsets.only(top:10),
                     height:150.0,
                     width: 200.0,
                     child: Card(
@@ -279,7 +286,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                   },
                   
                   child:Container(
-                    margin: EdgeInsets.only(top:360),
+                    margin: EdgeInsets.only(top:5),
                     height:150.0,
                     width: 200.0,
                     child: Card(
@@ -317,7 +324,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               // MaterialPageRoute(builder: (context) => Contact()), );
                   },
                   child:Container(
-                    margin: EdgeInsets.only(top:360),
+                    margin: EdgeInsets.only(top:5),
                     height:150.0,
                     width: 200.0,
                     child: Card(
@@ -366,7 +373,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                   },
                   
                   child:Container(
-                    margin: EdgeInsets.only(top:510),
+                    margin: EdgeInsets.only(top:5),
                     height:150.0,
                     width: 200.0,
                     child: Card(
@@ -404,7 +411,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               // MaterialPageRoute(builder: (context) => Contact()), );
                   },
                   child:Container(
-                    margin: EdgeInsets.only(top:510),
+                    margin: EdgeInsets.only(top:5),
                     height:150.0,
                     width: 200.0,
                     child: Card(
