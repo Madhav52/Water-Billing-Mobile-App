@@ -148,7 +148,7 @@ class _FeedbackState extends State<Feedback> {
                          Container(
                            padding: EdgeInsets.only(top: 30),
                            child: Center(
-                           child: Text("Contact Us",
+                           child: Text("FeedBack",
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: "Open-Sans",
@@ -161,7 +161,7 @@ class _FeedbackState extends State<Feedback> {
                           Container(
                            padding: EdgeInsets.fromLTRB(30,20,30,20),
                            child: Center(
-                           child: Text("Hi! If you have any queries or confusion regarding this app, just feel free to fill the form and send to us.",
+                           child: Text("Hi! If you have any queries or feedback regarding this app or service, just feel free to fill the form and send to us.",
                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.black,
