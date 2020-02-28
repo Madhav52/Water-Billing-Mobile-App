@@ -10,6 +10,7 @@ import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
+import 'package:mdi/mdi.dart';
 
 class DrawerItem {
   String title;
@@ -138,90 +139,236 @@ class _PaymentHistoryState extends State<PaymentHistory> {
               mainAxisAlignment: MainAxisAlignment.start,
               
               children: <Widget>[
-                  new Container(
-                    margin: EdgeInsets.only(top:30),
-                    height:300.0,
-                    width: 350.0,
+                InkWell(
+                  onTap: (){
+            
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top:40),
+                    height:90.0,
+                    width: 370.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                         
                       ),
+                      color: Colors.deepPurpleAccent,
                       elevation: 10.0,
                       child: Column(
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: <Widget>[
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,30.0,0.0,0),
-                           child: Text("Falgun 2076",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,20.0,0.0,0),
-                           child: Text("Payment Id: K0125",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,15.0,0.0,0),
-                           child: Text("Payment Date: 03/11/2076",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,15.0,0.0,0),
-                           child: Text("Total Amount: Rs. 160",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,15.0,0.0,0),
-                           child: Text("Payment Amount: Rs. 160",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,15.0,0.0,0),
-                           child: Text("Due Amount: Rs. 0",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         ),
+                         Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 20, top:27),
+                                 child: Icon(Mdi.calendar, size: 30.0, color: Colors.white),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:27, right: 100),
+                                child:Text("Kartik 2076",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top:25, right:20),
+                                 child: Icon(Mdi.chevronRight, size: 30.0, color: Colors.white),
+                              ),
+                            ],
+                          ),
                        ], 
                       )
                     ),
-                  ),
+                  ), 
+                ),
+                InkWell(
+                  onTap: (){
+            
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top:10),
+                    height:90.0,
+                    width: 370.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        
+                      ),
+                      color: Colors.deepPurpleAccent,
+                      elevation: 10.0,
+                      child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: <Widget>[
+                         Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 20, top:27),
+                                 child: Icon(Mdi.calendar, size: 30.0, color: Colors.white),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:27, right: 100),
+                                child:Text("Mangsir 2076",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top:25, right:20),
+                                 child: Icon(Mdi.chevronRight, size: 30.0, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                       ], 
+                      )
+                    ),
+                  ), 
+                ),
+                InkWell(
+                  onTap: (){
+            
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top:10),
+                    height:90.0,
+                    width: 370.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        
+                      ),
+                      color: Colors.deepPurpleAccent,
+                      elevation: 10.0,
+                      child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: <Widget>[
+                         Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 20, top:27),
+                                 child: Icon(Mdi.calendar, size: 30.0, color: Colors.white),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:27, right: 100),
+                                child:Text("Poush 2076",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top:25, right:20),
+                                 child: Icon(Mdi.chevronRight, size: 30.0, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                       ], 
+                      )
+                    ),
+                  ), 
+                ),
+                InkWell(
+                  onTap: (){
+            
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top:10),
+                    height:90.0,
+                    width: 370.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        
+                      ),
+                      color: Colors.deepPurpleAccent,
+                      elevation: 10.0,
+                      child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: <Widget>[
+                         Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 20, top:27),
+                                 child: Icon(Mdi.calendar, size: 30.0, color: Colors.white),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:27, right: 100),
+                                child:Text("Magh 2076",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top:25, right:20),
+                                 child: Icon(Mdi.chevronRight, size: 30.0, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                       ], 
+                      )
+                    ),
+                  ), 
+                ),
+                InkWell(
+                  onTap: (){
+            
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top:10),
+                    height:90.0,
+                    width: 370.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        
+                      ),
+                      color: Colors.deepPurpleAccent,
+                      elevation: 10.0,
+                      child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: <Widget>[
+                         Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 20, top:27),
+                                 child: Icon(Mdi.calendar, size: 30.0, color: Colors.white),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:27, right: 100),
+                                child:Text("Falgun 2076",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1.5)
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top:25, right:20),
+                                 child: Icon(Mdi.chevronRight, size: 30.0, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                       ], 
+                      )
+                    ),
+                  ), 
+                ),
               ]
               ),
             ),
