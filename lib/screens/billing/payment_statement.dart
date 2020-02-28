@@ -17,7 +17,7 @@ class DrawerItem {
   DrawerItem(this.title, this.icon);
 }
 
-class BillingStatement extends StatefulWidget {
+class PaymentHistory extends StatefulWidget {
   final drawerItems = [
     new DrawerItem("Home", Icons.home),
     new DrawerItem("About Us", Icons.supervisor_account),
@@ -32,10 +32,10 @@ class BillingStatement extends StatefulWidget {
   ];
 
   @override
-  _BillingStatementState createState() => new _BillingStatementState();
+  _PaymentHistoryState createState() => new _PaymentHistoryState();
 }
 
-class _BillingStatementState extends State<BillingStatement> {
+class _PaymentHistoryState extends State<PaymentHistory> {
 
   int _selectedIndex = 0;
 
@@ -64,9 +64,6 @@ class _BillingStatementState extends State<BillingStatement> {
         selected: i == _selectedIndex,
         onTap: () => _onSelectItem(i),
       );
-      // actions: <Widget>[
-      //   IconButton(icon:Icon(Icons.notifications), onPressed: (){})        
-      // ];
       drawerOptions.add(
         new Column(
           children: <Widget>[
@@ -143,7 +140,7 @@ class _BillingStatementState extends State<BillingStatement> {
               children: <Widget>[
                   new Container(
                     margin: EdgeInsets.only(top:30),
-                    height:550.0,
+                    height:300.0,
                     width: 350.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -155,19 +152,7 @@ class _BillingStatementState extends State<BillingStatement> {
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: <Widget>[
                          Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,30.0,0.0,20),
-                           child: Text("Billing Statement",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              letterSpacing: 1.5)
-                            ),
-                         
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,5.0,0.0,0),
+                           padding: EdgeInsets.fromLTRB(30.0,30.0,0.0,0),
                            child: Text("Falgun 2076",
                             style: TextStyle(
                               color: Colors.black,
@@ -180,7 +165,7 @@ class _BillingStatementState extends State<BillingStatement> {
                          ),
                          Padding(
                            padding: EdgeInsets.fromLTRB(30.0,20.0,0.0,0),
-                           child: Text("Bill Id: K0125",
+                           child: Text("Payment Id: K0125",
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: "Open-Sans",
@@ -190,8 +175,8 @@ class _BillingStatementState extends State<BillingStatement> {
                             ),
                          ),
                          Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,10.0,0.0,0),
-                           child: Text("Billing Date: 03/11/2076",
+                           padding: EdgeInsets.fromLTRB(30.0,15.0,0.0,0),
+                           child: Text("Payment Date: 03/11/2076",
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: "Open-Sans",
@@ -201,51 +186,7 @@ class _BillingStatementState extends State<BillingStatement> {
                             ),
                          ),
                          Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,10.0,0.0,0),
-                           child: Text("Reading Date: 02/11/2076",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,10.0,0.0,0),
-                           child: Text("Previous Unit: 102",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,10.0,0.0,0),
-                           child: Text("Current Unit: 118",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,10.0,0.0,0),
-                           child: Text("Consumed Unit: 16",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              letterSpacing: 1.5)
-                            ),
-                         ),
-                         Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,10.0,0.0,0),
+                           padding: EdgeInsets.fromLTRB(30.0,15.0,0.0,0),
                            child: Text("Total Amount: Rs. 160",
                             style: TextStyle(
                               color: Colors.black,
@@ -256,8 +197,8 @@ class _BillingStatementState extends State<BillingStatement> {
                             ),
                          ),
                          Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,10.0,0.0,0),
-                           child: Text("Payment Status: Pending",
+                           padding: EdgeInsets.fromLTRB(30.0,15.0,0.0,0),
+                           child: Text("Payment Amount: Rs. 160",
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: "Open-Sans",
@@ -267,8 +208,8 @@ class _BillingStatementState extends State<BillingStatement> {
                             ),
                          ),
                          Padding(
-                           padding: EdgeInsets.fromLTRB(30.0,10.0,0.0,0),
-                           child: Text("Rading Staff: Santosh Lama",
+                           padding: EdgeInsets.fromLTRB(30.0,15.0,0.0,0),
+                           child: Text("Due Amount: Rs. 0",
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: "Open-Sans",
@@ -277,32 +218,6 @@ class _BillingStatementState extends State<BillingStatement> {
                               letterSpacing: 1.5)
                             ),
                          ),
-                         Container(
-                            padding: EdgeInsets.only(top:30),
-                            child: Center(
-                              child: ButtonTheme(
-                                minWidth: 120.0,
-                                height: 50.0,
-                                child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(30.0),
-                                ),
-                                color: Colors.deepPurpleAccent,
-                                  onPressed: () {},
-                                  child: const Text(
-                                    'Pay Now',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: "Open-Sans",
-                                      color: Colors.white
-                                      )
-                                    
-                                  ),
-                                ),
-                              ),
-                            ),
-                            
-                          ),
                        ], 
                       )
                     ),
