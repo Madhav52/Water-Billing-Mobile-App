@@ -7,6 +7,7 @@ import 'package:flutter_login_page_ui/screens/customer/view_profile.dart';
 import 'package:flutter_login_page_ui/screens/billing/billing_statement.dart';
 import 'package:flutter_login_page_ui/screens/login.dart';
 import 'package:flutter_login_page_ui/screens/home.dart';
+import 'package:flutter_login_page_ui/screens/staffs/meter_reading.dart';
 
 
 var routes = <String, WidgetBuilder>{
@@ -20,5 +21,5 @@ void main() => runApp(new MaterialApp(
     ThemeData(primaryColor: Colors.deepPurple,primarySwatch: Colors.deepPurple,
         primaryColorDark: Colors.deepPurple),
     debugShowCheckedModeBanner: false,
-    home: Complaints(),
+    home: MeterReading(),
     routes: routes));

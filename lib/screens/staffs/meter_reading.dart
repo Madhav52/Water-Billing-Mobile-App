@@ -1,4 +1,5 @@
 
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
@@ -9,12 +10,7 @@ import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
-
-import 'dart:io';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
-
+import 'package:mdi/mdi.dart';
 
 class DrawerItem {
   String title;
@@ -22,8 +18,7 @@ class DrawerItem {
   DrawerItem(this.title, this.icon);
 }
 
-class Complaints extends StatefulWidget {
-  Complaints(): super();
+class MeterReading extends StatefulWidget {
   final drawerItems = [
     new DrawerItem("Home", Icons.home),
     new DrawerItem("About Us", Icons.supervisor_account),
@@ -38,90 +33,20 @@ class Complaints extends StatefulWidget {
   ];
 
   @override
-  _ComplaintsState createState() => new _ComplaintsState();
+  _MeterReadingState createState() => new _MeterReadingState();
 }
 
-class _ComplaintsState extends State<Complaints> {
+class _MeterReadingState extends State<MeterReading> {
 
   int _selectedIndex = 0;
-   static final String uploadEndPoint =
-      'http://localhost/flutter_test/upload_image.php';
-  Future<File> file;
-  String status = '';
-  String base64Image;
-  File tmpFile;
-  String errMessage = 'Error Uploading Image';
- 
-  chooseImage() {
-    setState(() {
-      file = ImagePicker.pickImage(source: ImageSource.gallery);
-    });
-    setStatus('');
-  }
- 
-  setStatus(String message) {
-    setState(() {
-      status = message;
-    });
-  }
- 
-  startUpload() {
-    setStatus('Uploading Image...');
-    if (null == tmpFile) {
-      setStatus(errMessage);
-      return;
-    }
-    String fileName = tmpFile.path.split('/').last;
-    upload(fileName);
-  }
- 
-  upload(String fileName) {
-    http.post(uploadEndPoint, body: {
-      "image": base64Image,
-      "name": fileName,
-    }).then((result) {
-      setStatus(result.statusCode == 200 ? result.body : errMessage);
-    }).catchError((error) {
-      setStatus(error);
-    });
-  }
- 
-  Widget showImage() {
-    return FutureBuilder<File>(
-      future: file,
-      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            null != snapshot.data) {
-          tmpFile = snapshot.data;
-          base64Image = base64Encode(snapshot.data.readAsBytesSync());
-          return Flexible(
-            child: Image.file(
-              snapshot.data,
-              fit: BoxFit.fill,
-            ),
-          );
-        } else if (null != snapshot.error) {
-          return const Text(
-            'Error Picking Image',
-            textAlign: TextAlign.center,
-          );
-        } else {
-          return const Text(
-            'No Image Selected',
-            textAlign: TextAlign.center,
-          );
-        }
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     MediaQueryData media = MediaQuery.of(context);
 
     final Size screenSize = media.size;
-    List<String> _category = ['Leakage', 'Broken', 'Missing', 'No Water']; 
-    String _selectedCategory;
+    List<String> _custId = ['K0123', 'K0124', 'K0214', 'K0321', 'K0154']; 
+    String _selectedId;
               
     var drawerOptions = <Widget>[];
     for (var i = 0; i < widget.drawerItems.length; i++) {
@@ -155,6 +80,7 @@ class _ComplaintsState extends State<Complaints> {
       );
       
     }
+
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.drawerItems[_selectedIndex].title),
@@ -208,7 +134,7 @@ class _ComplaintsState extends State<Complaints> {
               children: <Widget>[
                   new Container(
                     margin: EdgeInsets.only(top:30),
-                    height:550.0,
+                    height:420.0,
                     width: 350.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -222,7 +148,7 @@ class _ComplaintsState extends State<Complaints> {
                          Container(
                            padding: EdgeInsets.only(top: 30),
                            child: Center(
-                           child: Text("Complaints",
+                           child: Text("FY 2076/77",
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: "Open-Sans",
@@ -233,62 +159,53 @@ class _ComplaintsState extends State<Complaints> {
                            ),
                           ),
                           Container(
-                           padding: EdgeInsets.fromLTRB(30,20,30,20),
-                           child: Center(
-                           child: Text("Hi! If you have any complaints or suggestion regarding our service, just feel free to fill the form and send to us.",
-                           textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Roboto",
-                              fontSize: 18,
-                              
-                              letterSpacing: 1.0)
-                            ),
-                           ),
-                          ),
-                          Container(
                             padding: EdgeInsets.fromLTRB(30, 10, 20, 0),
                             child: DropdownButton(
-                              hint: Text('Select One Complaints Category'),
-                              value: _selectedCategory,
+                              hint: Text('Select Customer Id'),
+                              value: _selectedId,
                               onChanged: (newValue) {
                                 setState(() {
-                                  _selectedCategory = newValue;
+                                  _selectedIndex = newValue;
                                 });
                               },
-                              items: _category.map((category) {
+                              items: _custId.map((custId) {
                                 return DropdownMenuItem(
-                                  child: new Text(category),
-                                  value: category,
+                                  child: new Text(custId),
+                                  value: custId,
                                 );
                               }).toList(),
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(left: 30, top:27),
-                                  child: RaisedButton(
-                                    onPressed: chooseImage,
-                                    child: Text('Choose Image'),
-                                ),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              autofocus: false,
+                              decoration: InputDecoration(
+                                icon: Icon(Mdi.calendar),
+                                labelText: "Reading Date",
                               ),
-                              Padding(padding: EdgeInsets.only(top:27, left:20),
-                                child: showImage(),
-                              ),
-                              
-                            ],
+                            ),
                           ),
                           Container(
-                            padding: EdgeInsets.fromLTRB(30, 0, 20, 0),
+                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              maxLines: 3,
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
-                                labelText: "Message",
-                                hintText: 'Write Your Message Here.'
+                                icon: Icon(Icons.people),
+                                labelText: "Reader Name",
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: TextField(
+                              keyboardType: TextInputType.text,
+                              autofocus: false,
+                              decoration: InputDecoration(
+                                icon: Icon(Mdi.cameraMeteringCenter),
+                                labelText: "Current Reading",
                               ),
                             ),
                           ),
@@ -297,7 +214,7 @@ class _ComplaintsState extends State<Complaints> {
                             child: Center(
                               child: ButtonTheme(
                                 minWidth: 120.0,
-                                height: 55.0,
+                                height: 50.0,
                                 child: RaisedButton(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30.0),
