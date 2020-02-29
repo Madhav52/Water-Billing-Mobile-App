@@ -222,7 +222,7 @@ class _ReportState extends State<Report> {
                          Container(
                            padding: EdgeInsets.only(top: 30),
                            child: Center(
-                           child: Text("Complaints",
+                           child: Text("Report",
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: "Open-Sans",
@@ -235,7 +235,7 @@ class _ReportState extends State<Report> {
                           Container(
                            padding: EdgeInsets.fromLTRB(30,20,30,20),
                            child: Center(
-                           child: Text("Hi! If you have any complaints or suggestion regarding our service, just feel free to fill the form and send to us.",
+                           child: Text("Hello! If you found any problems related to water service such as water leakage or broken tap, fill the form and report to us.",
                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.black,
