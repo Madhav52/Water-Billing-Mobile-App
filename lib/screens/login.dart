@@ -1,26 +1,16 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/customer/customer_dashboard.dart';
-import 'package:flutter_login_page_ui/screens/home.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_login_page_ui/api.dart';
+import 'package:flutter/scheduler.dart';
 
-// void main() => runApp(MaterialApp(
-//       home: MaterialApp(),
-//       debugShowCheckedModeBanner: false,
-//     ));
 
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => new _LoginScreenState();
 }
-
-// class _LoginData {
-//   String email = '';
-//   String password = '';
-// }
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _isSelected = false;
@@ -31,17 +21,21 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController mailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   ScaffoldState scaffoldState;
-  _showMsg(msg) { //
+
+  void _showMsg(msg) { //
     final snackBar = SnackBar(
       content: Text(msg),
       action: SnackBarAction(
         label: 'Close',
         onPressed: () {
-          // Some code to undo the change!
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Wrong Username or Password'),
+            ),
+          );
         },
       ),
     );
-    Scaffold.of(context).showSnackBar(snackBar);
   }
 
   void _radio() {
@@ -211,64 +205,24 @@ class _LoginScreenState extends State<LoginScreen> {
                           
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                //     Row(
-                                //       children: <Widget>[
-                                //         InkWell(
-                                //           child: Padding(
-                                //             padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 50.0),
-                                //             child: Container(
-                                //               width: ScreenUtil.getInstance().setWidth(330),
-                                //               height: ScreenUtil.getInstance().setHeight(100),
-                                //               decoration: BoxDecoration(
-                                //                   gradient: LinearGradient(colors: [
-                                //                     Color(0xFF00dbde),
-                                //                     Color(0xFFfc00ff)
-                                //                   ]),
-                                //                   borderRadius: BorderRadius.circular(30.0),
-                                //                   boxShadow: [
-                                //                     BoxShadow(
-                                //                         color: Color(0xFF6078ea).withOpacity(.3),
-                                //                         offset: Offset(0.0, 8.0),
-                                //                         blurRadius: 8.0)
-                                //                   ]),
-                                //               child: Material(
-                                //                 color: Colors.transparent,
-                                //                 child: InkWell(
-                                //                   onTap: () {
-                                //                   },
-                                //                   child: Center(
-                                //                     child: Text( _isLoading? 'Loging...' : 'LOGIN',
-                                //                         style: TextStyle(
-                                //                             color: Colors.white,
-                                //                             fontFamily: "Poppins-Bold",
-                                //                             fontSize: 18,
-                                //                             letterSpacing: 1.0
-                                //                             )
-                                //                             ),
-                                                  
-                                //                   ),
-                                //                 ),
-                                //             ),
-                                //           ),
-                                //         ),
-                                //       )
-                                //     ],
-                                //   ),
+                              children: <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: const EdgeInsets.only(top:40.0),
                                   child: RaisedButton(
+                                    
                                     child: Padding(
                                       padding: EdgeInsets.only(
-                                          top: 8, bottom: 8, left: 10, right: 10),
+                                          top: 15, bottom: 15, left: 100, right: 100),
                                       child: Text(
-                                        _isLoading? 'Loging...' : 'Login',
+                                        _isLoading? 'LOGING...' : 'LOGIN',
                                         textDirection: TextDirection.ltr,
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 15.0,
+                                          fontSize: 20.0,
+                                          fontFamily: 'Roboto',
+                                          
                                           decoration: TextDecoration.none,
-                                          fontWeight: FontWeight.normal,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                     ),
@@ -307,7 +261,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var res = await CallApi().postData(data, 'authenticate');
     var body = json.decode(res.body);
-    if(body != null ){
+    if(body['sucess'] != null ){
       if (body['success']){
         SharedPreferences localStorage = await SharedPreferences.getInstance();
       localStorage.setString('token', body['token']);
@@ -315,7 +269,9 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.push(
         context,
         new MaterialPageRoute(
-            builder: (context) => HomeScreen()));
+            builder: (context) => CustomerDashboard()));
+      }else{
+        _showMsg(body['message']);
       }  
       
     }else{
@@ -327,9 +283,15 @@ class _LoginScreenState extends State<LoginScreen> {
        _isLoading = false;
     });
 
-  
-
-
+  }
+  void afterFirstLayout(BuildContext context) {
+    // Calling the same function "after layout" to resolve the issue.
+    _showMsg(['Error']);
+  }
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) =>_showMsg(context));
   }
 
 }
