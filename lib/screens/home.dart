@@ -13,9 +13,11 @@ import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/service.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/tarrif.dart';
+import 'package:flutter_login_page_ui/screens/login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/contactus.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/committe.dart';
+import 'package:mdi/mdi.dart';
 
 class DrawerItem {
   String title;
@@ -101,8 +103,24 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: new AppBar(
         title: new Text(widget.drawerItems[_selectedIndex].title),
         actions: <Widget>[
-          new IconButton(icon: Icon(Icons.notifications, color: Colors.white), onPressed: null),
-          
+          FlatButton(
+                onPressed: () => {
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()), )
+                },
+                
+                splashColor: Colors.yellow,
+                color: Colors.deepPurple,
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  children: <Widget>[
+                    Icon(Mdi.login, color: Colors.white,),
+                    Text("Login", style: TextStyle(color: Colors.white, fontSize: 18))
+                    
+                  ],
+                ),
+              ),
         ],
         elevation: defaultTargetPlatform== TargetPlatform.android?5.0:0.0,
       ),

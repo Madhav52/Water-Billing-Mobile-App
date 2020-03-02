@@ -1,6 +1,7 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_page_ui/screens/billing/billing_statement.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/contact_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/home_fragment.dart';
@@ -234,9 +235,9 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                 ),
                 InkWell(
                   onTap: (){
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => Tarrif()), );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BillingStatement()), );
                     },
                   child:Container(
                     margin: EdgeInsets.only(top:10),
@@ -280,9 +281,9 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               children: <Widget>[
                 InkWell(
                   onTap: (){
-              //       Navigator.push(
-              // context,
-              // MaterialPageRoute(builder: (context) => ServiceScreen()), );
+                    // Navigator.push(
+                    // context,
+                    // MaterialPageRoute(builder: (context) => Pa()), );
                   },
                   
                   child:Container(

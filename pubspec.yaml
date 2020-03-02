@@ -29,6 +29,7 @@ dependencies:
   mdi: ^1.0.1
   http: "0.11.3+17"
   image_picker: ^0.4.10
+  shared_preferences: ^0.5.0+1
 
 dev_dependencies:
   flutter_test:

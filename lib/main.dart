@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/billing/payment_history.dart';
 import 'package:flutter_login_page_ui/screens/customer/complaints.dart';
+import 'package:flutter_login_page_ui/screens/customer/customer_dashboard.dart';
 import 'package:flutter_login_page_ui/screens/customer/feedback.dart' as prefix0;
 import 'package:flutter_login_page_ui/screens/customer/update_profile.dart';
 import 'package:flutter_login_page_ui/screens/customer/view_profile.dart';
@@ -21,5 +22,5 @@ void main() => runApp(new MaterialApp(
     ThemeData(primaryColor: Colors.deepPurple,primarySwatch: Colors.deepPurple,
         primaryColorDark: Colors.deepPurple),
     debugShowCheckedModeBanner: false,
-    home: MeterReading(),
+    home: LoginScreen(),
     routes: routes));

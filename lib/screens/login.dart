@@ -1,5 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_login_page_ui/screens/customer/customer_dashboard.dart';
+import 'package:flutter_login_page_ui/screens/home.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_login_page_ui/api.dart';
 
 // void main() => runApp(MaterialApp(
 //       home: MaterialApp(),
@@ -19,10 +25,29 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _isSelected = false;
 
+  bool _isLoading = false;
+
+
+  TextEditingController mailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  ScaffoldState scaffoldState;
+  _showMsg(msg) { //
+    final snackBar = SnackBar(
+      content: Text(msg),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {
+          // Some code to undo the change!
+        },
+      ),
+    );
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
+
   void _radio() {
     setState(() {
       _isSelected = !_isSelected;
-    });
+    }); 
   }
 
   Widget radioButton(bool isSelected) => Container(
@@ -187,46 +212,75 @@ class _LoginScreenState extends State<LoginScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        InkWell(
-                                          child: Padding(
-                                            padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 50.0),
-                                            child: Container(
-                                              width: ScreenUtil.getInstance().setWidth(330),
-                                              height: ScreenUtil.getInstance().setHeight(100),
-                                              decoration: BoxDecoration(
-                                                  gradient: LinearGradient(colors: [
-                                                    Color(0xFF00dbde),
-                                                    Color(0xFFfc00ff)
-                                                  ]),
-                                                  borderRadius: BorderRadius.circular(30.0),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: Color(0xFF6078ea).withOpacity(.3),
-                                                        offset: Offset(0.0, 8.0),
-                                                        blurRadius: 8.0)
-                                                  ]),
-                                              child: Material(
-                                                color: Colors.transparent,
-                                                child: InkWell(
-                                                  onTap: () {},
-                                                  child: Center(
-                                                    child: Text("LOGIN",
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontFamily: "Poppins-Bold",
-                                                            fontSize: 18,
-                                                            letterSpacing: 1.0)),
-                                                  ),
-                                                ),
-                                            ),
-                                          ),
+                                //     Row(
+                                //       children: <Widget>[
+                                //         InkWell(
+                                //           child: Padding(
+                                //             padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 50.0),
+                                //             child: Container(
+                                //               width: ScreenUtil.getInstance().setWidth(330),
+                                //               height: ScreenUtil.getInstance().setHeight(100),
+                                //               decoration: BoxDecoration(
+                                //                   gradient: LinearGradient(colors: [
+                                //                     Color(0xFF00dbde),
+                                //                     Color(0xFFfc00ff)
+                                //                   ]),
+                                //                   borderRadius: BorderRadius.circular(30.0),
+                                //                   boxShadow: [
+                                //                     BoxShadow(
+                                //                         color: Color(0xFF6078ea).withOpacity(.3),
+                                //                         offset: Offset(0.0, 8.0),
+                                //                         blurRadius: 8.0)
+                                //                   ]),
+                                //               child: Material(
+                                //                 color: Colors.transparent,
+                                //                 child: InkWell(
+                                //                   onTap: () {
+                                //                   },
+                                //                   child: Center(
+                                //                     child: Text( _isLoading? 'Loging...' : 'LOGIN',
+                                //                         style: TextStyle(
+                                //                             color: Colors.white,
+                                //                             fontFamily: "Poppins-Bold",
+                                //                             fontSize: 18,
+                                //                             letterSpacing: 1.0
+                                //                             )
+                                //                             ),
+                                                  
+                                //                   ),
+                                //                 ),
+                                //             ),
+                                //           ),
+                                //         ),
+                                //       )
+                                //     ],
+                                //   ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: RaisedButton(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          top: 8, bottom: 8, left: 10, right: 10),
+                                      child: Text(
+                                        _isLoading? 'Loging...' : 'Login',
+                                        textDirection: TextDirection.ltr,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15.0,
+                                          decoration: TextDecoration.none,
+                                          fontWeight: FontWeight.normal,
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                ],
+                                      ),
+                                    ),
+                                    color: Color(0xFFFF835F),
+                                    disabledColor: Colors.grey,
+                                    shape: new RoundedRectangleBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(20.0)),
+                                    onPressed: _isLoading ? null : _login,
+                                ),
+                              ),
+                            ],
                           )
                         ]
                       ),
@@ -239,6 +293,43 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+  }
+  void _login() async{
+    
+    setState(() {
+       _isLoading = true;
+    });
+
+    var data = {
+        'email' : mailController.text, 
+        'password' : passwordController.text
+    };
+
+    var res = await CallApi().postData(data, 'authenticate');
+    var body = json.decode(res.body);
+    if(body != null ){
+      if (body['success']){
+        SharedPreferences localStorage = await SharedPreferences.getInstance();
+      localStorage.setString('token', body['token']);
+      localStorage.setString('user', json.encode(body['user']));
+      Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) => HomeScreen()));
+      }  
+      
+    }else{
+      _showMsg(body['message']);
+    }
+
+
+    setState(() {
+       _isLoading = false;
+    });
+
+  
+
+
   }
 
 }
