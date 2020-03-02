@@ -10,8 +10,8 @@ import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
-import 'package:carousel_pro/carousel_pro.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mdi/mdi.dart';
+import '../login.dart';
 
 
 class DrawerItem {
@@ -98,8 +98,24 @@ class _CommitteState extends State<Committe> {
       appBar: new AppBar(
         title: new Text(widget.drawerItems[_selectedIndex].title),
         actions: <Widget>[
-          new IconButton(icon: Icon(Icons.notifications, color: Colors.white), onPressed: null),
-          
+          FlatButton(
+                onPressed: () => {
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()), )
+                },
+                
+                splashColor: Colors.yellow,
+                color: Colors.deepPurple,
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  children: <Widget>[
+                    Icon(Mdi.login, color: Colors.white,),
+                    Text("Login", style: TextStyle(color: Colors.white, fontSize: 18))
+                    
+                  ],
+                ),
+              ),
         ],
         elevation: defaultTargetPlatform== TargetPlatform.android?5.0:0.0,
       ),
@@ -141,19 +157,6 @@ class _CommitteState extends State<Committe> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               
               children: <Widget>[
-                // Container(
-                //   child: Padding(padding: EdgeInsets.only(top:40),
-                //   child:Text("Committes",
-                //     style: TextStyle(
-                //       color: Colors.black,
-                //       fontFamily: "Open-Sans",
-                //       fontWeight: FontWeight.w800,
-                //       fontSize: 30,
-                //       letterSpacing: 1.5)
-                //     ),
-                //   ),
-                  
-                // ),
                 InkWell(
                   onTap: (){
                     
