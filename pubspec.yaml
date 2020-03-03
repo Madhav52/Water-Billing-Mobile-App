@@ -80,10 +80,4 @@ flutter:
     - family: Poppins-Medium
       fonts:
         - asset: assets/Poppins-Medium.ttf
-    - family: Schyler
- 
-    # - family: Trajan Pro
-    #   fonts:
-    #     - asset: fonts/TrajanPro.ttf
-    #     - asset: fonts/TrajanPro_Bold.ttf
-    #       weight: 700
+    

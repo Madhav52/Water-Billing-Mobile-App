@@ -4,7 +4,6 @@ import 'package:flutter_login_page_ui/screens/customer/customer_dashboard.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_login_page_ui/api.dart';
-import 'package:flutter/scheduler.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -18,24 +17,20 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
 
 
-  TextEditingController mailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   ScaffoldState scaffoldState;
 
-  void _showMsg(msg) { //
+   _showMsg(msg) { //
     final snackBar = SnackBar(
       content: Text(msg),
       action: SnackBarAction(
         label: 'Close',
         onPressed: () {
-          Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Wrong Username or Password'),
-            ),
-          );
         },
       ),
     );
+    //Scaffold.of(context).showSnackBar(snackBar);
   }
 
   void _radio() {
@@ -209,7 +204,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(top:40.0),
                                   child: RaisedButton(
-                                    
                                     child: Padding(
                                       padding: EdgeInsets.only(
                                           top: 15, bottom: 15, left: 100, right: 100),
@@ -255,7 +249,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     var data = {
-        'email' : mailController.text, 
+        'phone' : phoneController.text, 
         'password' : passwordController.text
     };
 
@@ -284,14 +278,14 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
   }
-  void afterFirstLayout(BuildContext context) {
-    // Calling the same function "after layout" to resolve the issue.
-    _showMsg(['Error']);
-  }
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) =>_showMsg(context));
-  }
+  // void afterFirstLayout(BuildContext context) {
+  //   // Calling the same function "after layout" to resolve the issue.
+  //   _showMsg(['Error']);
+  // }
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance
+  //       .addPostFrameCallback((_) =>_showMsg(context));
+  // }
 
 }
