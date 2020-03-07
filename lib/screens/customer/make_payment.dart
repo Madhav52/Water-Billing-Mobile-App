@@ -155,6 +155,24 @@ class _MakePaymentState extends State<MakePayment> {
                               ),
                             ],
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only( top:10, left: 50, right:20),
+                                  child: Image.asset('assets/khalti.png',
+                                    width: 100,
+                                    height: 100,
+                                  ),
+                              ),
+                              Padding(padding: EdgeInsets.only(top:10, left: 30, right:20),
+                                child: Image.asset('assets/esewa.jpg',
+                                    width: 100,
+                                    height: 100,
+                                  ),
+                              ),
+                            ],
+                          ),
                        ], 
                       )
                     ),
