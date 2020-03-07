@@ -1,15 +1,14 @@
-
-import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter_login_page_ui/screens/billing/billing_statement.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/contact_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/home_fragment.dart';
-import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
-import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
+import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:mdi/mdi.dart';
 
 class DrawerItem {
@@ -77,22 +76,7 @@ class _BillingHistoryState extends State<BillingHistory> {
         )
       );
       
-    }
-    
-    Widget image_slider_carousel = Container(
-      height: 250,
-      child: new Carousel(
-        boxFit: BoxFit.fill,
-        images: [
-          new AssetImage("assets/water.png"),
-          new AssetImage("assets/water.png"),
-          new AssetImage("assets/water.png"),
-          
-        ],
-      ),
-    );
-
-    return new Scaffold(
+    } new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.drawerItems[_selectedIndex].title),
         actions: <Widget>[
@@ -141,7 +125,11 @@ class _BillingHistoryState extends State<BillingHistory> {
               children: <Widget>[
                 InkWell(
                   onTap: (){
-            
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BillingStatement()),
+                      );
                   },
                   child: Container(
                     margin: EdgeInsets.only(top:40),
@@ -187,7 +175,11 @@ class _BillingHistoryState extends State<BillingHistory> {
                 ),
                 InkWell(
                   onTap: (){
-            
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BillingStatement()),
+                      );
                   },
                   child: Container(
                     margin: EdgeInsets.only(top:10),
@@ -233,7 +225,11 @@ class _BillingHistoryState extends State<BillingHistory> {
                 ),
                 InkWell(
                   onTap: (){
-            
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BillingStatement()),
+                      );
                   },
                   child: Container(
                     margin: EdgeInsets.only(top:10),
@@ -279,7 +275,11 @@ class _BillingHistoryState extends State<BillingHistory> {
                 ),
                 InkWell(
                   onTap: (){
-            
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BillingStatement()),
+                      );
                   },
                   child: Container(
                     margin: EdgeInsets.only(top:10),
@@ -325,7 +325,11 @@ class _BillingHistoryState extends State<BillingHistory> {
                 ),
                 InkWell(
                   onTap: (){
-            
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BillingStatement()),
+                      );
                   },
                   child: Container(
                     margin: EdgeInsets.only(top:10),

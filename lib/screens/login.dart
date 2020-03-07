@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_login_page_ui/screens/customer/customer_dashboard.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_login_page_ui/api.dart';
-
+import 'package:flutter_login_page_ui/screens/customer/customer_dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -16,7 +15,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isLoading = false;
 
-
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   ScaffoldState scaffoldState;
@@ -27,10 +25,13 @@ class _LoginScreenState extends State<LoginScreen> {
       action: SnackBarAction(
         label: 'Close',
         onPressed: () {
+           
         },
+        
       ),
+      
     );
-    //Scaffold.of(context).showSnackBar(snackBar);
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 
   void _radio() {
@@ -83,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.all(5.0),
                 child: Image.asset("assets/water.png", 
                 width: 500,
-                height: 400,
+                height: 300,
                 fit:BoxFit.fill
                 ),
                 
@@ -92,12 +93,12 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.only(left: 28.0, right: 28.0, top: 250.0),
+              padding: EdgeInsets.only(left: 28.0, right: 28.0, top: 250.0, bottom: 20),
               child: Column(
                 children: <Widget>[
                   Container(
                     width: double.infinity,
-                    height: ScreenUtil.getInstance().setHeight(750),
+                    height: ScreenUtil.getInstance().setHeight(950),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15.0),
@@ -138,6 +139,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontFamily: "Poppins-Medium",
                                   fontSize: ScreenUtil.getInstance().setSp(26))),
                           TextField(
+                            controller: phoneController,
+                            
                             decoration: InputDecoration(
                                 hintText: "Phone Number",
                                 hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
@@ -155,6 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontFamily: "Poppins-Medium",
                                   fontSize: ScreenUtil.getInstance().setSp(26))),
                           TextField(
+                            controller: passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                                 hintText: "Password",
@@ -206,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: RaisedButton(
                                     child: Padding(
                                       padding: EdgeInsets.only(
-                                          top: 15, bottom: 15, left: 100, right: 100),
+                                          top: 15, bottom: 15, left: 60, right: 60),
                                       child: Text(
                                         _isLoading? 'LOGING...' : 'LOGIN',
                                         textDirection: TextDirection.ltr,
@@ -250,27 +254,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var data = {
         'phone' : phoneController.text, 
-        'password' : passwordController.text
+        'password' : passwordController.text 
     };
 
-    var res = await CallApi().postData(data, 'authenticate');
+    var res = await CallApi().postData(data, 'login');
     var body = json.decode(res.body);
-    if(body['sucess'] != null ){
-      if (body['success']){
+
+      if (body['success'] == true){
         SharedPreferences localStorage = await SharedPreferences.getInstance();
-      localStorage.setString('token', body['token']);
-      localStorage.setString('user', json.encode(body['user']));
-      Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (context) => CustomerDashboard()));
+        localStorage.setString('token', body['token']);
+        localStorage.setString('user', json.encode(body['user']));
+        Navigator.push(
+          context,
+          new MaterialPageRoute(
+              builder: (context) => CustomerDashboard()));
       }else{
         _showMsg(body['message']);
       }  
-      
-    }else{
-      _showMsg(body['message']);
-    }
 
 
     setState(() {
@@ -278,14 +278,5 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
   }
-  // void afterFirstLayout(BuildContext context) {
-  //   // Calling the same function "after layout" to resolve the issue.
-  //   _showMsg(['Error']);
-  // }
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance
-  //       .addPostFrameCallback((_) =>_showMsg(context));
-  // }
 
 }

@@ -1,15 +1,13 @@
-
-import 'package:carousel_pro/carousel_pro.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/contact_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/home_fragment.dart';
-import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
-import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
+import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
 
 class DrawerItem {
@@ -65,9 +63,6 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
         selected: i == _selectedIndex,
         onTap: () => _onSelectItem(i),
       );
-      // actions: <Widget>[
-      //   IconButton(icon:Icon(Icons.notifications), onPressed: (){})        
-      // ];
       drawerOptions.add(
         new Column(
           children: <Widget>[
@@ -81,20 +76,6 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
       );
       
     }
-    
-    Widget image_slider_carousel = Container(
-      height: 250,
-      child: new Carousel(
-        boxFit: BoxFit.fill,
-        images: [
-          new AssetImage("assets/water.png"),
-          new AssetImage("assets/water.png"),
-          new AssetImage("assets/water.png"),
-          
-        ],
-      ),
-    );
-
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.drawerItems[_selectedIndex].title),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
@@ -17,7 +16,7 @@ class DrawerItem {
   DrawerItem(this.title, this.icon);
 }
 
-class UpdateProfileCust extends StatefulWidget {
+class MakePayment extends StatefulWidget {
   final drawerItems = [
     new DrawerItem("Home", Icons.home),
     new DrawerItem("About Us", Icons.supervisor_account),
@@ -32,10 +31,10 @@ class UpdateProfileCust extends StatefulWidget {
   ];
 
   @override
-  _UpdateProfileCustState createState() => new _UpdateProfileCustState();
+  _MakePaymentState createState() => new _MakePaymentState();
 }
 
-class _UpdateProfileCustState extends State<UpdateProfileCust> {
+class _MakePaymentState extends State<MakePayment> {
 
   int _selectedIndex = 0;
 
@@ -114,13 +113,9 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
           ],
         ),
       ),
-      body: new GestureDetector(
-        onTap: () {
-        // call this method here to hide soft keyboard
-        FocusScope.of(context).requestFocus(new FocusNode());
-        },
-        child: Container(
+      body: new Container(
         width: screenSize.width,
+        height: screenSize.height,
         child: new ListView( 
         children: <Widget>[
           new Container(
@@ -130,8 +125,8 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
               children: <Widget>[
                   new Container(
                     margin: EdgeInsets.only(top:30),
-                    height:450.0,
-                    width: 350.0,
+                    height:420.0,
+                    width: 380.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
@@ -141,88 +136,23 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
                       child: Column(
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: <Widget>[
-                         Container(
-                           padding: EdgeInsets.only(top: 30),
-                           child: Center(
-                           child: Text("Update Profile",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Open-Sans",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              letterSpacing: 1.5)
-                            ),
-                           ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                            child: TextField(
-                              keyboardType: TextInputType.text,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.person),
-                                labelText: "Full Name",
+                         Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 20, right:20, top:20),
+                                 child: Icon(Mdi.currencyInr, size: 40.0, color: Colors.black),
                               ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                            child: TextField(
-                              keyboardType: TextInputType.number,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.phonelink_ring),
-                                labelText: "Phone Number",
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                            child: TextField(
-                              keyboardType: TextInputType.text,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.email),
-                                labelText: "Email",
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                            child: TextField(
-                              keyboardType: TextInputType.text,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                icon: Icon(Mdi.mapMarker),
-                                labelText: "Address",
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(top:30),
-                            child: Center(
-                              child: ButtonTheme(
-                                minWidth: 120.0,
-                                height: 55.0,
-                                child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(30.0),
-                                ),
-                                color: Colors.deepPurpleAccent,
-                                  onPressed: () {},
-                                  child: const Text(
-                                    'Update',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: "Open-Sans",
-                                      color: Colors.white
-                                      )
-                                    
-                                  ),
+                              Padding(padding: EdgeInsets.only(top:20),
+                                child:Text("Make Payment",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Open-Sans",
+                                  fontSize: 30,
+                                  letterSpacing: 1.5)
                                 ),
                               ),
-                            ),
-                            
+                            ],
                           ),
                        ], 
                       )
@@ -233,7 +163,6 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
             ),
         ]
         ),
-      ),
       ),
       // _setDrawerItemWidget(_selectedIndex)
     );

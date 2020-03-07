@@ -1,15 +1,13 @@
-
-import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/contact_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/home_fragment.dart';
-import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
-import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
+import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 
 
 class DrawerItem {
@@ -18,7 +16,7 @@ class DrawerItem {
   DrawerItem(this.title, this.icon);
 }
 
-class Feedback extends StatefulWidget {
+class FeedbackCust extends StatefulWidget {
   final drawerItems = [
     new DrawerItem("Home", Icons.home),
     new DrawerItem("About Us", Icons.supervisor_account),
@@ -33,10 +31,10 @@ class Feedback extends StatefulWidget {
   ];
 
   @override
-  _FeedbackState createState() => new _FeedbackState();
+  _FeedbackCustState createState() => new _FeedbackCustState();
 }
 
-class _FeedbackState extends State<Feedback> {
+class _FeedbackCustState extends State<FeedbackCust> {
 
   int _selectedIndex = 0;
 
@@ -65,9 +63,6 @@ class _FeedbackState extends State<Feedback> {
         selected: i == _selectedIndex,
         onTap: () => _onSelectItem(i),
       );
-      // actions: <Widget>[
-      //   IconButton(icon:Icon(Icons.notifications), onPressed: (){})        
-      // ];
       drawerOptions.add(
         new Column(
           children: <Widget>[

@@ -1,26 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_page_ui/screens/billing/payment_history.dart';
-import 'package:flutter_login_page_ui/screens/customer/complaints.dart';
-import 'package:flutter_login_page_ui/screens/customer/customer_dashboard.dart';
-import 'package:flutter_login_page_ui/screens/customer/feedback.dart' as prefix0;
-import 'package:flutter_login_page_ui/screens/customer/update_profile.dart';
-import 'package:flutter_login_page_ui/screens/customer/view_profile.dart';
-import 'package:flutter_login_page_ui/screens/billing/billing_statement.dart';
-import 'package:flutter_login_page_ui/screens/login.dart';
+import 'package:flutter_login_page_ui/screens/root_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_login_page_ui/screens/home.dart';
-import 'package:flutter_login_page_ui/screens/staffs/meter_reading.dart';
+void main() => runApp(MyApp());
 
+class MyApp extends StatefulWidget {
+  
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-var routes = <String, WidgetBuilder>{
-  "/LoginScreen": (BuildContext context) => LoginScreen(),
-  "/HomeScreen": (BuildContext context) => HomeScreen(),
+class _MyAppState extends State<MyApp> {
+  bool _isLoggedIn = false;
 
+  @override
+  void initState() {
+    _checkIfLoggedIn();
+    super.initState();
+  }
+  void _checkIfLoggedIn() async{
+      // check if token is there
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var token = localStorage.getString('token');
+      if(token!= null){
+         setState(() {
+            _isLoggedIn = true;
+         });
+      }
+  }
 
-};
-void main() => runApp(new MaterialApp(
-    theme:
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme:
     ThemeData(primaryColor: Colors.deepPurple,primarySwatch: Colors.deepPurple,
         primaryColorDark: Colors.deepPurple),
-    debugShowCheckedModeBanner: false,
-    home: HomeScreen(),
-    routes: routes));
+      home: RootView(),
+      
+    );
+  }
+}
+
+
+// var routes = <String, WidgetBuilder>{
+//   "/LoginScreen": (BuildContext context) => LoginScreen(),
+//   "/HomeScreen": (BuildContext context) => HomeScreen(),
+
+
+// };
+// void main() => runApp(new MaterialApp(
+//     theme:
+//     ThemeData(primaryColor: Colors.deepPurple,primarySwatch: Colors.deepPurple,
+//         primaryColorDark: Colors.deepPurple),
+//     debugShowCheckedModeBanner: false,
+//     home: HomeScreen(),
+//     routes: routes));
