@@ -138,69 +138,69 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: TextStyle(
                                   fontFamily: "Poppins-Medium",
                                   fontSize: ScreenUtil.getInstance().setSp(26))),
-                          TextField(
-                            controller: phoneController,
-                            
-                            decoration: InputDecoration(
-                                hintText: "Phone Number",
-                                hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
-                          ),
-                          SizedBox(
-                            height: ScreenUtil.getInstance().setHeight(30),
-                          ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text("PassWord",
-                              style: TextStyle(
-                                  fontFamily: "Poppins-Medium",
-                                  fontSize: ScreenUtil.getInstance().setSp(26))),
-                          TextField(
-                            controller: passwordController,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                hintText: "Password",
-                                hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
-                          ),
-                          SizedBox(
-                            height: ScreenUtil.getInstance().setHeight(35),
-                          ),
-
-                            ],
-                          ),
-                          
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                TextField(
+                                  controller: phoneController,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                      hintText: "Phone Number",
+                                      hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
+                                ),
+                                SizedBox(
+                                  height: ScreenUtil.getInstance().setHeight(30),
+                                ),
+                                  ],
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        SizedBox(
-                                          width: 12.0,
-                                        ),
-                                        GestureDetector(
-                                          onTap: _radio,
-                                          child: radioButton(_isSelected),
-                                        ),
-                                        SizedBox(
-                                          width: 8.0,
-                                        ),
-                                        Text("Remember me",
-                                            style: TextStyle(
-                                                fontSize: 12, fontFamily: "Poppins-Medium"))
-                                      ],
-                                    ),
-                            
-                              Text(
-                                "Forgot Password?",
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    fontFamily: "Poppins-Medium",
-                                    fontSize: ScreenUtil.getInstance().setSp(28)),
-                              )
-                            ],
-                          ),
+                                    Text("PassWord",
+                                    style: TextStyle(
+                                        fontFamily: "Poppins-Medium",
+                                        fontSize: ScreenUtil.getInstance().setSp(26))),
+                                TextField(
+                                  controller: passwordController,
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                      hintText: "Password",
+                                      hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
+                                ),
+                                SizedBox(
+                                  height: ScreenUtil.getInstance().setHeight(35),
+                                ),
+
+                                  ],
+                                ),
+                                
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Row(
+                                            children: <Widget>[
+                                              SizedBox(
+                                                width: 12.0,
+                                              ),
+                                              GestureDetector(
+                                                onTap: _radio,
+                                                child: radioButton(_isSelected),
+                                              ),
+                                              SizedBox(
+                                                width: 8.0,
+                                              ),
+                                              Text("Remember me",
+                                                  style: TextStyle(
+                                                      fontSize: 12, fontFamily: "Poppins-Medium"))
+                                            ],
+                                          ),
+                                  
+                                    Text(
+                                      "Forgot Password?",
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontFamily: "Poppins-Medium",
+                                          fontSize: ScreenUtil.getInstance().setSp(28)),
+                                    )
+                                  ],
+                                ),
                           
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,

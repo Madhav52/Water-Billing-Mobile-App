@@ -1,3 +1,4 @@
+import 'package:flutter_login_page_ui/screens/customer/update_profile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
@@ -122,8 +123,8 @@ class _ViewProfileCustState extends State<ViewProfileCust> {
               
               children: <Widget>[
                   new Container(
-                    margin: EdgeInsets.only(top:30),
-                    height:420.0,
+                    margin: EdgeInsets.only(top:20),
+                    height:430.0,
                     width: 380.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -266,13 +267,17 @@ class _ViewProfileCustState extends State<ViewProfileCust> {
                             child: Center(
                               child: ButtonTheme(
                                 minWidth: 120.0,
-                                height: 45.0,
+                                height: 50.0,
                                 child: RaisedButton(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30.0),
                                 ),
                                 color: Colors.deepPurpleAccent,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => UpdateProfileCust()), );
+                                  },
                                   child: const Text(
                                     'Update Profile',
                                     style: TextStyle(

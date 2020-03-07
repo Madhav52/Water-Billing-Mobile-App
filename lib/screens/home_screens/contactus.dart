@@ -191,7 +191,6 @@ class _ContactState extends State<Contact> {
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
                               keyboardType: TextInputType.text,
-                              autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Icons.person),
                                 labelText: "Full Name*",
@@ -203,7 +202,6 @@ class _ContactState extends State<Contact> {
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
                               keyboardType: TextInputType.number,
-                              autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Icons.phonelink_ring),
                                 labelText: "Phone Number*",
@@ -215,7 +213,6 @@ class _ContactState extends State<Contact> {
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
                               keyboardType: TextInputType.text,
-                              autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Icons.subject),
                                 labelText: "Subject*",
@@ -228,7 +225,6 @@ class _ContactState extends State<Contact> {
                             child: TextField(
                               maxLines: 3,
                               keyboardType: TextInputType.text,
-                              autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Icons.message),
                                 labelText: "Message",

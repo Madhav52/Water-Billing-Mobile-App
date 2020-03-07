@@ -204,7 +204,7 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
                             child: Center(
                               child: ButtonTheme(
                                 minWidth: 120.0,
-                                height: 55.0,
+                                height: 50.0,
                                 child: RaisedButton(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30.0),
