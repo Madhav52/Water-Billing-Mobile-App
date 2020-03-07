@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/contact_us.dart';
-import 'package:flutter_login_page_ui/screens/fragments/home_fragment.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
@@ -14,6 +13,8 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+
+import '../home.dart';
 
 
 class DrawerItem {
@@ -335,7 +336,7 @@ class _ComplaintsState extends State<Complaints> {
   _setDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return new HomeFragment();
+        return new HomeScreen();
       case 1:
         return new AboutUs();
       case 2:

@@ -7,12 +7,12 @@ import 'package:flutter_login_page_ui/screens/customer/feedback.dart';
 import 'package:flutter_login_page_ui/screens/customer/make_payment.dart';
 import 'package:flutter_login_page_ui/screens/customer/view_profile.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_login_page_ui/screens/root_view.dart';
 import 'package:mdi/mdi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/contact_us.dart';
-import 'package:flutter_login_page_ui/screens/fragments/home_fragment.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
@@ -438,7 +438,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
   _setDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return new HomeFragment();
+        return new HomeScreen();
       case 1:
         return new AboutUs();
       case 2:
@@ -472,7 +472,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       localStorage.remove('token');
       Navigator.push(
-          context, new MaterialPageRoute(builder: (context) => HomeScreen()));
+          context, new MaterialPageRoute(builder: (context) => RootView()));
     }
   }
 }

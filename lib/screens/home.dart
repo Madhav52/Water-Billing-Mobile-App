@@ -1,21 +1,11 @@
-import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
-import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
-import 'package:flutter_login_page_ui/screens/fragments/contact_us.dart';
-import 'package:flutter_login_page_ui/screens/fragments/home_fragment.dart';
-import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
-import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
-import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
-import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/contactus.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/service.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/tarrif.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/committe.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mdi/mdi.dart';
-import 'package:flutter_login_page_ui/screens/login.dart';
+
 
 
 class HomeScreen extends StatefulWidget {

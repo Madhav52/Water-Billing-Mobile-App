@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
-
 import 'fragments/about_app.dart';
 import 'fragments/about_us.dart';
 import 'fragments/contact_us.dart';
-import 'fragments/home_fragment.dart';
 import 'fragments/our_mission.dart';
 import 'fragments/our_vision.dart';
 import 'fragments/privacy_policy.dart';
@@ -160,9 +158,9 @@ class _RootViewState extends State<RootView> {
       case 4:
         return new ContactUs();
       case 5:
-        return new PrivacyPolicy();
-      case 6:
         return new RateUs();
+      case 6:
+        return new PrivacyPolicy();
       case 7:
         return new AboutApp();
 

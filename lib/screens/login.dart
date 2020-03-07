@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: <Widget>[
                   Container(
                     width: double.infinity,
-                    height: ScreenUtil.getInstance().setHeight(950),
+                    height: ScreenUtil.getInstance().setHeight(750),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15.0),

@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
 import 'package:flutter_login_page_ui/screens/fragments/contact_us.dart';
-import 'package:flutter_login_page_ui/screens/fragments/home_fragment.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:mdi/mdi.dart';
+import '../home.dart';
 import '../login.dart';
 
 
@@ -321,7 +321,7 @@ class _CommitteState extends State<Committe> {
   _setDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return new HomeFragment();
+        return new HomeScreen();
       case 1:
         return new AboutUs();
       case 2:
