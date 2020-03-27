@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../drawer.dart';
+
 class PrivacyPolicy extends StatefulWidget {
   @override
   _PrivacyPolicyState createState() => new _PrivacyPolicyState();
@@ -11,6 +13,11 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
     MediaQueryData media = MediaQuery.of(context);
     final Size screenSize = media.size;
     return new Scaffold(
+       appBar: AppBar(
+        title: new Text('Privacy Policy'),
+        elevation: 5,
+      ),
+      drawer: SideDrawer(),
       body: new Container(
         width: screenSize.width,
         height: screenSize.height,
