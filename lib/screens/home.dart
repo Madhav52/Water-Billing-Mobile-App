@@ -4,7 +4,12 @@ import 'package:flutter_login_page_ui/screens/home_screens/tarrif.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/home_screens/committe.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mdi/mdi.dart';
+
+import '../drawer.dart';
+import 'login.dart';
 
 
 
@@ -25,7 +30,34 @@ class _HomeScreenState extends State<HomeScreen> {
     final Size screenSize = media.size;
 
        return Scaffold(
-      
+         appBar: AppBar(
+        title: new Text('Home'),
+        actions: <Widget>[
+          FlatButton(
+                onPressed: () => {
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()), )
+                },
+                
+                splashColor: Colors.yellow,
+                color: Colors.deepPurple,
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(right:5),
+                        child: Icon(Mdi.login,  color: Colors.white),
+                    ),
+                    Text("Login", style: TextStyle(color: Colors.white, fontSize: 20))
+                    
+                  ],
+                ),
+              ),
+        ],
+        elevation: 5,
+      ),
+      drawer: SideDrawer(),
       body: new Container(
         width: screenSize.width,
         child: new ListView(
@@ -45,12 +77,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(builder: (context) => Committe()), );
                   },
                   child:Container(
-                    margin: EdgeInsets.only(top:40),
+                    margin: EdgeInsets.only(top:20),
                     height:170.0,
                     width: 200.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
                       margin: EdgeInsets.all(20),
@@ -85,12 +117,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(builder: (context) => Tarrif()), );
                     },
                   child:Container(
-                    margin: EdgeInsets.only(top:40),
+                    margin: EdgeInsets.only(top:20),
                     height:170.0,
                     width: 200.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
                       margin: EdgeInsets.all(20),
@@ -134,12 +166,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(builder: (context) => ServiceScreen()), );
                         },
                   child:Container(
-                    margin: EdgeInsets.only(top:20),
+                    margin: EdgeInsets.only(top:5),
                     height:170.0,
                     width: 200.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
                       margin: EdgeInsets.all(20),
@@ -174,12 +206,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(builder: (context) => Contact()), );
                   },
                   child:Container(
-                    margin: EdgeInsets.only(top:20),
+                    margin: EdgeInsets.only(top:5),
                     height:170.0,
                     width: 200.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         
                       ),
                       margin: EdgeInsets.all(20),
@@ -213,18 +245,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ), 
         ]
       ),  
-      
-      )
-       
-      
-      
-    );   
-
-  }
-
-
-       Widget sliderCarasoul() {
-         return Container(
+    )
+  );   
+}
+        Widget sliderCarasoul() {
+          return Container(
       height: 250,
       child: new Carousel(
         boxFit: BoxFit.fill,
@@ -236,8 +261,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
-       }
-    
- 
-
+  }
 }

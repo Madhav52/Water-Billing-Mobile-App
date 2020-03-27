@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_page_ui/screens/root_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_login_page_ui/screens/home.dart';
 void main() => runApp(MyApp());
@@ -36,7 +35,7 @@ class _MyAppState extends State<MyApp> {
       theme:
     ThemeData(primaryColor: Colors.deepPurple,primarySwatch: Colors.deepPurple,
         primaryColorDark: Colors.deepPurple),
-      home: RootView(),
+      home: HomeScreen(),
       
     );
   }

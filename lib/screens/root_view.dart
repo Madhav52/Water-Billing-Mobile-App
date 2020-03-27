@@ -9,6 +9,7 @@ import 'fragments/privacy_policy.dart';
 import 'fragments/rate_us.dart';
 import 'home.dart';
 import 'login.dart';
+import 'package:flutter_login_page_ui/screens/home_screens/committe.dart';
 
 class RootView extends StatefulWidget {
   final drawerItems = [
@@ -102,8 +103,11 @@ class _RootViewState extends State<RootView> {
                 padding: EdgeInsets.all(10.0),
                 child: Row(
                   children: <Widget>[
-                    Icon(Mdi.login, color: Colors.white,),
-                    Text("Login", style: TextStyle(color: Colors.white, fontSize: 18))
+                    Padding(
+                      padding: EdgeInsets.only(right:5),
+                        child: Icon(Mdi.login,  color: Colors.white),
+                    ),
+                    Text("Login", style: TextStyle(color: Colors.white, fontSize: 20))
                     
                   ],
                 ),

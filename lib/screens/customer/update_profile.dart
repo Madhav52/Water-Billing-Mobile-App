@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:mdi/mdi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../home.dart';
 
@@ -39,9 +42,32 @@ class UpdateProfileCust extends StatefulWidget {
 class _UpdateProfileCustState extends State<UpdateProfileCust> {
 
   int _selectedIndex = 0;
+  var userData;
+
+  void initState() {
+    _getUserInfo();
+    super.initState();
+  }
+  _getUserInfo() async {
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var userJson = localStorage.getString('user'); 
+      var user = json.decode(userJson);
+      setState(() {
+        userData = user;
+      });
+      
+  print(userData);
+  }
+  
 
   @override
   Widget build(BuildContext context) {
+    // return TextFormField(
+    //   emailController = emailController,
+
+    // );{
+
+    // }
     MediaQueryData media = MediaQuery.of(context);
 
     final Size screenSize = media.size;
@@ -158,6 +184,8 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                             child: TextField(
+                              controller: TextEditingController(text: userData['name'].toString()),
+                              
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
@@ -169,17 +197,7 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.phonelink_ring),
-                                labelText: "Phone Number",
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                            child: TextField(
+                              controller: TextEditingController(text: userData['email'].toString()),
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
@@ -191,11 +209,24 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
+                              controller: TextEditingController(text: userData['vdc'].toString()),
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Mdi.mapMarker),
-                                labelText: "Address",
+                                labelText: "VDC/Municipality",
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: TextField(
+                              controller: TextEditingController(text: userData['ward'].toString()),
+                              keyboardType: TextInputType.number,
+                              autofocus: false,
+                              decoration: InputDecoration(
+                                icon: Icon(Icons.map),
+                                labelText: "Ward No",
                               ),
                             ),
                           ),

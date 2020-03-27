@@ -51,13 +51,14 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
     _getUserInfo();
     super.initState();
   }
-  void _getUserInfo() async {
+  _getUserInfo() async {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var userJson = localStorage.getString('user'); 
       var user = json.decode(userJson);
       setState(() {
         userData = user;
       });
+      return userData;
 
   }
 
@@ -99,15 +100,15 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
             onPressed: logout,
             splashColor: Colors.yellow,
             color: Colors.deepPurple,
-            padding: EdgeInsets.only(right: 10.0),
+            padding: EdgeInsets.only(right: 10.0, left:10),
             child: Row(
               children: <Widget>[
-                Icon(
-                  Mdi.logout,
-                  color: Colors.white,
-                ),
+                Padding(
+                      padding: EdgeInsets.only(right:5),
+                        child: Icon(Mdi.logout,  color: Colors.white),
+                    ),
                 Text("Logout",
-                    style: TextStyle(color: Colors.white, fontSize: 18))
+                    style: TextStyle(color: Colors.white, fontSize: 20))
               ],
             ),
           ),
@@ -139,9 +140,8 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
       ),
       
       
-      body: new Container(
-        width: screenSize.width,
-        height: screenSize.height,
+      body: new SingleChildScrollView(
+        
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -363,7 +363,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                       MaterialPageRoute(builder: (context) => FeedbackCust()));
                     },
                     child: Container(
-                      margin: EdgeInsets.only(top: 5),
+                      margin: EdgeInsets.only(top: 5, bottom: 5),
                       height: 150.0,
                       width: 200.0,
                       child: Card(
@@ -398,7 +398,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                       MaterialPageRoute(builder: (context) => Complaints()), );
                     },
                     child: Container(
-                      margin: EdgeInsets.only(top: 5),
+                      margin: EdgeInsets.only(top: 5, bottom: 5),
                       height: 150.0,
                       width: 200.0,
                       child: Card(

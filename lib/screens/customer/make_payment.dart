@@ -7,6 +7,7 @@ import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
 import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
+// import 'package:flutter_khalti/flutter_khalti.dart';
 import 'package:mdi/mdi.dart';
 
 import '../home.dart';
@@ -36,6 +37,32 @@ class MakePayment extends StatefulWidget {
 }
 
 class _MakePaymentState extends State<MakePayment> {
+
+  void initState() {
+    super.initState();
+  }
+
+  // _payViaKhalti() {
+  //   FlutterKhalti(
+  //     urlSchemeIOS: "KhaltiPayFlutterExampleScheme",
+  //     publicKey: "test_public_key_25e3032c030145b5b29a239108ed8b6f",
+  //     productId: "1233",
+  //     productName: "Test 2",
+  //     amount: 12121,
+  //     customData: {
+  //       "test": "asass",
+  //     },
+  //   ).initPayment(
+  //     onSuccess: (data) {
+  //       print("success");
+  //       print(data);
+  //     },
+  //     onError: (error) {
+  //       print("error");
+  //       print(error);
+  //     },
+  //   );
+  // }
 
   int _selectedIndex = 0;
 
@@ -158,15 +185,20 @@ class _MakePaymentState extends State<MakePayment> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              Padding(
+                              InkWell(
+                                onTap: (){
+                                  // _payViaKhalti();
+                                },
+                              child: Padding(
                                 padding: EdgeInsets.only( top:10, left: 50, right:20),
                                   child: Image.asset('assets/khalti.png',
                                     width: 100,
                                     height: 100,
                                   ),
                               ),
+                              ),
                               Padding(padding: EdgeInsets.only(top:10, left: 30, right:20),
-                                child: Image.asset('assets/esewa.jpg',
+                                child: Image.asset('assets/esewa.png',
                                     width: 100,
                                     height: 100,
                                   ),
@@ -209,6 +241,7 @@ class _MakePaymentState extends State<MakePayment> {
         return new Text("Error");
     }
   }
+  
 
   _onSelectItem(int index) {
     setState(() => _selectedIndex = index);

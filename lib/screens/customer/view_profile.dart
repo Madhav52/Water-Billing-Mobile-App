@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_login_page_ui/screens/customer/update_profile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,9 @@ import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
 import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
 import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
 import 'package:mdi/mdi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../api.dart';
 import '../home.dart';
 
 class DrawerItem {
@@ -34,12 +38,36 @@ class ViewProfileCust extends StatefulWidget {
 
   @override
   _ViewProfileCustState createState() => new _ViewProfileCustState();
+  
 }
 
 class _ViewProfileCustState extends State<ViewProfileCust> {
 
   int _selectedIndex = 0;
+  var customerData;
+  
+  _getProfile() async{
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    
+    String a = localStorage.get('user');
+    var b = json.decode(a);
+    // print(b['phone']); 
+    var url = 'customer?phone=' + b['phone'];
+    // print(url);
 
+    var res = await CallApi().getData(url);
+
+    var body = json.decode(res.body);
+    var customer = body['customer'][0];
+    setState(() {
+        customerData = customer;
+      });
+    }
+     void initState() {
+    _getProfile();
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     MediaQueryData media = MediaQuery.of(context);
@@ -161,7 +189,7 @@ class _ViewProfileCustState extends State<ViewProfileCust> {
                                  child: Icon(Mdi.renameBox, size: 30.0, color: Colors.black),
                               ),
                               Padding(padding: EdgeInsets.only(top:20),
-                                child:Text("Madhav Prasad Belbase",
+                                child:Text((customerData!= null ? '${customerData['name']}' : 'Name'),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: "Open-Sans",
@@ -180,7 +208,7 @@ class _ViewProfileCustState extends State<ViewProfileCust> {
                                  
                               ),
                               Padding(padding: EdgeInsets.only(top:10),
-                                child:Text("9865373625",
+                                child:Text((customerData!= null ? '${customerData['phone']}' : 'Phone'),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: "Open-Sans",
@@ -198,7 +226,7 @@ class _ViewProfileCustState extends State<ViewProfileCust> {
                                  child: Icon(Mdi.email, size: 30.0, color: Colors.black),
                               ),
                               Padding(padding: EdgeInsets.only(top:10),
-                                child:Text("Madhav52@gmail.com",
+                                child:Text((customerData!= null ? '${customerData['email']}' : 'Email'),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: "Open-Sans",
@@ -216,7 +244,7 @@ class _ViewProfileCustState extends State<ViewProfileCust> {
                                  child: Icon(Mdi.mapMarker, size: 30.0, color: Colors.black),
                               ),
                               Padding(padding: EdgeInsets.only(top:10),
-                                child:Text("Kritipur, KTM",
+                                child:Text((customerData!= null ? '${customerData['vdc']}' : 'VDC') + ', ' + (customerData!= null ? '${customerData['ward']}' : 'VDC'),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: "Open-Sans",
@@ -234,7 +262,7 @@ class _ViewProfileCustState extends State<ViewProfileCust> {
                                  child: Icon(Icons.home, size: 30.0, color: Colors.black),
                               ),
                               Padding(padding: EdgeInsets.only(top:10),
-                                child:Text("K1232",
+                                child:Text((customerData!= null ? '${customerData['ghar_no']}' : 'Ghar No'),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: "Open-Sans",
@@ -252,7 +280,7 @@ class _ViewProfileCustState extends State<ViewProfileCust> {
                                  child: Icon(Mdi.waterPump, size: 30.0, color: Colors.black),
                               ),
                               Padding(padding: EdgeInsets.only(top:10),
-                                child:Text("0.5",
+                                child:Text((customerData!= null ? '${customerData['tap_size']}' : 'Tap Inch'),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: "Open-Sans",
@@ -333,5 +361,6 @@ class _ViewProfileCustState extends State<ViewProfileCust> {
     setState(() => _selectedIndex = index);
     Navigator.of(context).pop(); // close the drawer
   }
+  
   }
 }
