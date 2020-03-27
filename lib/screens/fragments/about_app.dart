@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
+import '../../drawer.dart';
 
 class AboutApp extends StatefulWidget {
   @override
@@ -12,6 +13,11 @@ class _AboutAppState extends State<AboutApp> {
     MediaQueryData media = MediaQuery.of(context);
     final Size screenSize = media.size;
     return new Scaffold(
+      appBar: AppBar(
+        title: new Text('About App'),
+        elevation: 5,
+      ),
+      drawer: SideDrawer(),
       body: new Container(
         width: screenSize.width,
         height: screenSize.height,
