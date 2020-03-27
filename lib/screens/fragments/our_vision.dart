@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../drawer.dart';
+
 class OurVision extends StatefulWidget {
   @override
   _OurVisionState createState() => new _OurVisionState();
@@ -11,6 +13,11 @@ class _OurVisionState extends State<OurVision> {
     MediaQueryData media = MediaQuery.of(context);
     final Size screenSize = media.size;
     return new Scaffold(
+       appBar: AppBar(
+        title: new Text('Our Vision'),
+        elevation: 5,
+      ),
+      drawer: SideDrawer(),
       body: new Container(
         width: screenSize.width,
         height: screenSize.height,
