@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../api.dart';
 import '../../drawer.dart';
 import '../home.dart';
@@ -11,10 +14,24 @@ class UpdateProfileStaff extends StatefulWidget {
 }
 
 class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
-
-  void initState() {
+  var staffData;
+  
+  _getProfile() async{
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    String user = localStorage.get('user');
+    var userDetail = json.decode(user); 
+    var url = 'staff?phone=' + userDetail['phone'];
+    var res = await CallApi().getData(url);
+    var body = json.decode(res.body);
+    var staff = body['staff'][0];
+    setState(() {
+        staffData = staff;
+        print(staffData);
+      });
+    }
+     void initState() {
+    _getProfile();
     super.initState();
-    CallApi().logout();
   }
   @override
   Widget build(BuildContext context) {
@@ -70,7 +87,7 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
               children: <Widget>[
                   new Container(
                     margin: EdgeInsets.only(top:30),
-                    height:450.0,
+                    height:500.0,
                     width: 350.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -97,6 +114,7 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                             child: TextField(
+                              controller: TextEditingController(text: staffData['name'].toString()),
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
@@ -108,6 +126,7 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
+                              controller: TextEditingController(text: staffData['phone'].toString()),
                               keyboardType: TextInputType.number,
                               autofocus: false,
                               decoration: InputDecoration(
@@ -119,6 +138,7 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
+                              controller: TextEditingController(text: staffData['email'].toString()),
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
@@ -130,11 +150,24 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
+                              controller: TextEditingController(text: staffData['vdc'].toString()),
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Mdi.mapMarker),
-                                labelText: "Address",
+                                labelText: "VDC/Municipality",
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: TextField(
+                              controller: TextEditingController(text: staffData['ward'].toString()),
+                              keyboardType: TextInputType.text,
+                              autofocus: false,
+                              decoration: InputDecoration(
+                                icon: Icon(Mdi.mapMarker),
+                                labelText: "Ward No",
                               ),
                             ),
                           ),
@@ -143,7 +176,7 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                             child: Center(
                               child: ButtonTheme(
                                 minWidth: 120.0,
-                                height: 55.0,
+                                height: 50.0,
                                 child: RaisedButton(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30.0),
