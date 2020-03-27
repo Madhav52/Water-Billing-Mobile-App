@@ -28,9 +28,9 @@ class _SideDrawerState extends State<SideDrawer> {
       title: Text(
         title,
         style: TextStyle(
-            fontFamily: 'RobotoMono',
+            fontFamily: 'sans',
             color: Colors.deepPurple,
-            fontSize: 18,
+            fontSize: 15,
             fontWeight: FontWeight.bold),
       ),
       onTap: tapHandler,

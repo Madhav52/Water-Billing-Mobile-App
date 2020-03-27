@@ -66,8 +66,8 @@ void initState() {
               children: <Widget>[
                   new Container(
                     margin: EdgeInsets.only(top:30),
-                    height:420.0,
-                    width: 380.0,
+                    height:300.0,
+                    width: 370.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
