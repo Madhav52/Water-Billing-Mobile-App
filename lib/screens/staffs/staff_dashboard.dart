@@ -86,12 +86,12 @@ class _StaffDashboardState extends State<StaffDashboard> {
             decoration: BoxDecoration(
               color: Colors.indigoAccent,
             ),
-            child: Padding(padding: EdgeInsets.only(top:40),
+            child: Padding(padding: EdgeInsets.only(top:30),
             child:Text(("Namaste! ") + (userData!= null ? '${userData['name']}' : 'user'),
               style: TextStyle(
                 color: Colors.black,
                 fontFamily: "Open-Sans",
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w600,
                 fontSize: 30,
                 letterSpacing: 1.5)
               ),
