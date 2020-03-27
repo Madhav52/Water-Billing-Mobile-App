@@ -65,7 +65,6 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData media = MediaQuery.of(context);
-
     final Size screenSize = media.size;
 
     var drawerOptions = <Widget>[];
