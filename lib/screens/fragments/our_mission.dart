@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../drawer.dart';
+
 class OurMission extends StatefulWidget {
   @override
   _OurMissionState createState() => new _OurMissionState();
@@ -9,9 +11,13 @@ class _OurMissionState extends State<OurMission> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData media = MediaQuery.of(context);
-
     final Size screenSize = media.size;
     return new Scaffold(
+       appBar: AppBar(
+        title: new Text('Our Mission'),
+        elevation: 5,
+      ),
+      drawer: SideDrawer(),
      body: new Container(
         width: screenSize.width,
         height: screenSize.height,

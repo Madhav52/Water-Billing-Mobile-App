@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
 
+import '../../drawer.dart';
+
 class ContactUs extends StatefulWidget {
   @override
   _ContactUsState createState() => new _ContactUsState();
@@ -12,6 +14,11 @@ class _ContactUsState extends State<ContactUs> {
     MediaQueryData media = MediaQuery.of(context);
     final Size screenSize = media.size;
     return new Scaffold(
+       appBar: AppBar(
+        title: new Text('Contact Us'),
+        elevation: 5,
+      ),
+      drawer: SideDrawer(),
       body: new Container(
         width: screenSize.width,
         height: screenSize.height,
