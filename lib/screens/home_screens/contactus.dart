@@ -23,10 +23,10 @@ class _ContactState extends State<Contact> {
         title: new Text('Contact Us'),
         actions: <Widget>[
           FlatButton(
-                onPressed: () => {
+                onPressed: ()  {
                    Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()), )
+                      MaterialPageRoute(builder: (context) => LoginScreen()), );
                 },
                 
                 splashColor: Colors.yellow,

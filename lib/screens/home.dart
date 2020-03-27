@@ -34,10 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
         title: new Text('Home'),
         actions: <Widget>[
           FlatButton(
-                onPressed: () => {
+                onPressed: () {
                    Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()), )
+                      MaterialPageRoute(builder: (context) => LoginScreen()), );
                 },
                 
                 splashColor: Colors.yellow,

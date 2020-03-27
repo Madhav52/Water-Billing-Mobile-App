@@ -9,7 +9,6 @@ import 'fragments/privacy_policy.dart';
 import 'fragments/rate_us.dart';
 import 'home.dart';
 import 'login.dart';
-import 'package:flutter_login_page_ui/screens/home_screens/committe.dart';
 
 class RootView extends StatefulWidget {
   final drawerItems = [
@@ -40,16 +39,12 @@ class _RootViewState extends State<RootView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _selectedIndex= 0;
   }
 
   // @override
   List<Widget> buildOption(BuildContext context) {
-    MediaQueryData media = MediaQuery.of(context);
-
-    final Size screenSize = media.size;
               
     var drawerOptions = <Widget>[];
     for (var i = 0; i < widget.drawerItems.length; i++) {
@@ -92,10 +87,10 @@ class _RootViewState extends State<RootView> {
         title: new Text(widget.drawerItems[_selectedIndex].title),
         actions: <Widget>[
           FlatButton(
-                onPressed: () => {
+                onPressed: () {
                    Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()), )
+                      MaterialPageRoute(builder: (context) => LoginScreen()), );
                 },
                 
                 splashColor: Colors.yellow,

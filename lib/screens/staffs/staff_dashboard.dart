@@ -37,8 +37,6 @@ class _StaffDashboardState extends State<StaffDashboard> {
   }
   @override
   Widget build(BuildContext context) {
-    MediaQueryData media = MediaQuery.of(context);
-    final Size screenSize = media.size;
     
     return new Scaffold(
       appBar: AppBar(

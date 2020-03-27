@@ -1,14 +1,5 @@
-import 'package:flutter_login_page_ui/screens/fragments/about_app.dart';
-import 'package:flutter_login_page_ui/screens/fragments/about_us.dart';
-import 'package:flutter_login_page_ui/screens/fragments/contact_us.dart';
-import 'package:flutter_login_page_ui/screens/fragments/our_mission.dart';
-import 'package:flutter_login_page_ui/screens/fragments/our_vision.dart';
-import 'package:flutter_login_page_ui/screens/fragments/privacy_policy.dart';
-import 'package:flutter_login_page_ui/screens/fragments/rate_us.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
-
 import '../../api.dart';
 import '../../drawer.dart';
 import '../home.dart';

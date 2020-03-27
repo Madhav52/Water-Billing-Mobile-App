@@ -11,7 +11,6 @@ class MeterReading extends StatefulWidget {
 }
 
 class _MeterReadingState extends State<MeterReading> {
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +100,7 @@ class _MeterReadingState extends State<MeterReading> {
                               value: _selectedId,
                               onChanged: (newValue) {
                                 setState(() {
-                                  _selectedIndex = newValue;
+                                  _selectedId = newValue;
                                 });
                               },
                               items: _custId.map((custId) {

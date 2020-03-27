@@ -22,10 +22,10 @@ class _ServiceScreenState extends State<ServiceScreen> {
         title: new Text('Our Services'),
         actions: <Widget>[
           FlatButton(
-                onPressed: () => {
+                onPressed: ()  {
                    Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()), )
+                      MaterialPageRoute(builder: (context) => LoginScreen()), );
                 },
                 
                 splashColor: Colors.yellow,

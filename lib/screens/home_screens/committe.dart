@@ -26,10 +26,10 @@ class _CommitteState extends State<Committe> {
         title: new Text('Committe'),
         actions: <Widget>[
           FlatButton(
-                onPressed: () => {
+                onPressed: ()  {
                    Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()), )
+                      MaterialPageRoute(builder: (context) => LoginScreen()), );
                 },
                 
                 splashColor: Colors.yellow,

@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page_ui/api.dart';
 import 'package:mdi/mdi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../drawer.dart';
 import '../home.dart';
 
@@ -12,10 +15,24 @@ class ViewProfileStaff extends StatefulWidget {
 }
 
 class _ViewProfileStaffState extends State<ViewProfileStaff> {
-
-void initState() {
+  var staffData;
+  
+  _getProfile() async{
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    String user = localStorage.get('user');
+    var userDetail = json.decode(user); 
+    var url = 'staff?phone=' + userDetail['phone'];
+    var res = await CallApi().getData(url);
+    var body = json.decode(res.body);
+    var staff = body['staff'][0];
+    setState(() {
+        staffData = staff;
+        print(staffData);
+      });
+    }
+     void initState() {
+    _getProfile();
     super.initState();
-    CallApi().logout();
   }
   @override
   Widget build(BuildContext context) {
@@ -103,7 +120,7 @@ void initState() {
                                  child: Icon(Mdi.renameBox, size: 30.0, color: Colors.black),
                               ),
                               Padding(padding: EdgeInsets.only(top:20),
-                                child:Text("Madhav Prasad Belbase",
+                                child:Text((staffData!= null ? '${staffData['name']}' : 'Name'),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: "Open-Sans",
@@ -122,7 +139,7 @@ void initState() {
                                  
                               ),
                               Padding(padding: EdgeInsets.only(top:10),
-                                child:Text("9865373625",
+                                child:Text((staffData!= null ? '${staffData['phone']}' : 'Phone'),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: "Open-Sans",
@@ -140,7 +157,7 @@ void initState() {
                                  child: Icon(Mdi.email, size: 30.0, color: Colors.black),
                               ),
                               Padding(padding: EdgeInsets.only(top:10),
-                                child:Text("Madhav52@gmail.com",
+                                child:Text((staffData!= null ? '${staffData['email']}' : 'Email'),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: "Open-Sans",
@@ -158,7 +175,7 @@ void initState() {
                                  child: Icon(Mdi.mapMarker, size: 30.0, color: Colors.black),
                               ),
                               Padding(padding: EdgeInsets.only(top:10),
-                                child:Text("Kritipur, KTM",
+                                child:Text((staffData!= null ? '${staffData['vdc']}' : 'VDC') + ', ' + (staffData!= null ? '${staffData['ward']}' : 'Ward'),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: "Open-Sans",
