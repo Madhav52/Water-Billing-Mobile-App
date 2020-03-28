@@ -15,8 +15,12 @@ class UpdateProfileStaff extends StatefulWidget {
 
 class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
   var staffData;
+  void initState() {
+       super.initState();
+      _getStaffProfile();
+  }
   
-  _getProfile() async{
+  _getStaffProfile() async{
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     String user = localStorage.get('user');
     var userDetail = json.decode(user); 
@@ -26,13 +30,8 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
     var staff = body['staff'][0];
     setState(() {
         staffData = staff;
-        print(staffData);
       });
     }
-     void initState() {
-    _getProfile();
-    super.initState();
-  }
   @override
   Widget build(BuildContext context) {
     MediaQueryData media = MediaQuery.of(context);
@@ -114,9 +113,8 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: staffData['name'].toString()),
+                              controller: TextEditingController(text: (staffData!= null ? '${staffData['name']}' : 'Name')),
                               keyboardType: TextInputType.text,
-                              autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Icons.person),
                                 labelText: "Full Name",
@@ -126,9 +124,8 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: staffData['phone'].toString()),
+                              controller: TextEditingController(text: (staffData!= null ? '${staffData['phone']}' : 'Phone')),
                               keyboardType: TextInputType.number,
-                              autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Icons.phonelink_ring),
                                 labelText: "Phone Number",
@@ -138,9 +135,8 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: staffData['email'].toString()),
+                              controller: TextEditingController(text: (staffData!= null ? '${staffData['email']}' : 'Email')),
                               keyboardType: TextInputType.text,
-                              autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Icons.email),
                                 labelText: "Email",
@@ -150,9 +146,8 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: staffData['vdc'].toString()),
+                              controller: TextEditingController(text: (staffData!= null ? '${staffData['vdc']}' : 'VDC/Municipality')),
                               keyboardType: TextInputType.text,
-                              autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Mdi.mapMarker),
                                 labelText: "VDC/Municipality",
@@ -162,9 +157,8 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: staffData['ward'].toString()),
+                              controller: TextEditingController(text: (staffData!= null ? '${staffData['ward']}' : 'Ward No')),
                               keyboardType: TextInputType.text,
-                              autofocus: false,
                               decoration: InputDecoration(
                                 icon: Icon(Mdi.mapMarker),
                                 labelText: "Ward No",

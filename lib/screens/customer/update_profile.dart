@@ -110,7 +110,7 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: userData['name'].toString()),
+                              controller: TextEditingController(text: (userData!= null ? '${userData['name']}' : 'Name')),
                               
                               keyboardType: TextInputType.text,
                               autofocus: false,
@@ -123,7 +123,7 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: userData['email'].toString()),
+                              controller: TextEditingController(text: (userData!= null ? '${userData['email']}' : 'Email')),
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
@@ -135,7 +135,7 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: userData['vdc'].toString()),
+                              controller: TextEditingController(text: (userData!= null ? '${userData['vdc']}' : 'VDC/Municipality')),
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
@@ -147,7 +147,7 @@ class _UpdateProfileCustState extends State<UpdateProfileCust> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: userData['ward'].toString()),
+                              controller: TextEditingController(text: (userData!= null ? '${userData['ward']}' : 'Ward No')),
                               keyboardType: TextInputType.number,
                               autofocus: false,
                               decoration: InputDecoration(

@@ -16,8 +16,13 @@ class ViewProfileStaff extends StatefulWidget {
 
 class _ViewProfileStaffState extends State<ViewProfileStaff> {
   var staffData;
+
+  void initState() {
+    _getStaffProfile();
+    super.initState();
+  }
   
-  _getProfile() async{
+  _getStaffProfile() async{
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     String user = localStorage.get('user');
     var userDetail = json.decode(user); 
@@ -27,13 +32,9 @@ class _ViewProfileStaffState extends State<ViewProfileStaff> {
     var staff = body['staff'][0];
     setState(() {
         staffData = staff;
-        print(staffData);
       });
     }
-     void initState() {
-    _getProfile();
-    super.initState();
-  }
+     
   @override
   Widget build(BuildContext context) {
     MediaQueryData media = MediaQuery.of(context);
