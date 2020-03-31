@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,9 +14,19 @@ class UpdateProfileStaff extends StatefulWidget {
 
 class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
   var staffData;
+  var updatedData;
+
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController vdcController = new TextEditingController();
+  TextEditingController wardController = new TextEditingController();
+  
+
+
   void initState() {
        super.initState();
       _getStaffProfile();
+      // _updateStaffProfile();
   }
   
   _getStaffProfile() async{
@@ -28,10 +37,85 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
     var res = await CallApi().getData(url);
     var body = json.decode(res.body);
     var staff = body['staff'][0];
+    nameController.text = staff['name'];
+    emailController.text = staff['email'];
+    vdcController.text = staff['vdc'];
+    wardController.text = staff['ward'].toString();
+    
     setState(() {
         staffData = staff;
       });
+  }
+    // _updateStaffProfile() async {
+    //   SharedPreferences localstorage = await SharedPreferences.getInstance();
+    //   String user = localstorage.get('user');
+    //   var staffDetail = json.decode(user);
+      
+    //   var url = 'staff?phone=' + staffDetail['phone'] + '&name=' + staffDetail['name'] + '&email=' + staffDetail['email'] + '&vdc=' + staffDetail['vdc'] + '&ward=' + staffDetail['ward'].toString();
+    //   print(url);
+      
+    //   var response = await CallApi().putData(url);
+    //   print(response);
+    //   var staffbody = json.decode(response.body);
+    //   print(staffbody);
+    //   var updateStaff = staffbody['staff'];
+    //   print(updateStaff);
+    //   setState(() {
+    //     updatedData = updateStaff;
+    //     print(updatedData);
+    //   });
+    // }
+  
+    _updateStaffProfile() async {
+      SharedPreferences localstorage = await SharedPreferences.getInstance();
+      String user = localstorage.get('user');
+      // String token1 = localstorage.getString('token');
+
+      var staffDetail = json.decode(user);
+      var data = {
+        'id': staffDetail["id"],
+        'name': nameController.text,
+        'email': emailController.text,
+        'vdc': vdcController.text,
+        'ward': wardController.text
+        
+      };
+      var data1 = {
+        'id': staffDetail["id"],
+        'token': staffDetail["token"],
+        'phone': staffDetail["phone"],
+        'name': nameController.text,
+        'email': emailController.text,
+        'vdc': vdcController.text,
+        'ward': wardController.text
+        
+      };
+      // var url = 'user/' ;
+      var token = staffDetail["token"];
+      // + staffDetail['id'] + '&name=' + nameController.text + '&email=' + emailController.text + '&vdc=' + vdcController.text + '&ward=' + wardController.text;
+      var response = await CallApi().putData(data, token ,'user/');
+      // print(response);
+      print(response.statusCode);
+      // print(response.body);
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      // print(data1);
+      // print(data1);
+      await localStorage.setString('user', jsonEncode(data1));
+      print(localStorage.get('user'));
+    //  var res = await CallApi().getData(url);
+    // var body = json.decode(res.body);
+    // var staff = body['staff'][0];
+    // print(staff);
+    // localstorage.setString('user', jsonEncode(staff));
+    //  setState(() {
+    //     staffData = user;
+    //     print(staffData);
+    //   });
+      // print(jsonDecode(localStorage.get(user)));
+    
     }
+
+    
   @override
   Widget build(BuildContext context) {
     MediaQueryData media = MediaQuery.of(context);
@@ -113,7 +197,9 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: (staffData!= null ? '${staffData['name']}' : 'Name')),
+                              // controller: TextEditingController(text: (staffData!= null ? '${staffData['name']}' : 'Name')),
+                              controller: nameController,
+                              
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 icon: Icon(Icons.person),
@@ -124,18 +210,9 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: (staffData!= null ? '${staffData['phone']}' : 'Phone')),
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.phonelink_ring),
-                                labelText: "Phone Number",
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                            child: TextField(
-                              controller: TextEditingController(text: (staffData!= null ? '${staffData['email']}' : 'Email')),
+                              // controller: TextEditingController(text: (staffData!= null ? '${staffData['email']}' : 'Email')),
+                              // onChanged: (text)=> emailController,
+                              controller: emailController,
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 icon: Icon(Icons.email),
@@ -146,7 +223,8 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: (staffData!= null ? '${staffData['vdc']}' : 'VDC/Municipality')),
+                              controller: vdcController,
+                              // controller: TextEditingController(text: (staffData!= null ? '${staffData['vdc']}' : 'VDC/Municipality')),
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 icon: Icon(Mdi.mapMarker),
@@ -157,8 +235,9 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              controller: TextEditingController(text: (staffData!= null ? '${staffData['ward']}' : 'Ward No')),
-                              keyboardType: TextInputType.text,
+                              controller: wardController,
+                              // controller: TextEditingController(text: (staffData!= null ? '${staffData['ward']}' : 'Ward No')),
+                              keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 icon: Icon(Mdi.mapMarker),
                                 labelText: "Ward No",
@@ -176,7 +255,12 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                                   borderRadius: new BorderRadius.circular(30.0),
                                 ),
                                 color: Colors.deepPurpleAccent,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                      _updateStaffProfile();
+                                    });
+                                    
+                                  },
                                   child: const Text(
                                     'Update',
                                     style: TextStyle(
@@ -204,4 +288,5 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
       ),
     );
   }
+  
 }

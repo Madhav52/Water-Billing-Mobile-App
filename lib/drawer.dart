@@ -78,9 +78,11 @@ class _SideDrawerState extends State<SideDrawer> {
             'Home',
             Icons.home,
             () {
+              Navigator.pop(context);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) {
+                    
                     return HomeScreen();
                   },
                 ),
@@ -116,7 +118,9 @@ class _SideDrawerState extends State<SideDrawer> {
                 MaterialPageRoute(
                   builder: (_) {
                     return OurMission();
+                    
                   },
+                  
                 ),
               );
             },

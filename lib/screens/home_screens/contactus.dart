@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
 import '../../drawer.dart';
 import '../login.dart';
+// import 'package:flutter_email_sender/flutter_email_sender.dart';
+// import 'package:image_picker/image_picker.dart';
+// import 'package:mailto/mailto.dart';
+// // Optional, but most likely what you want
+// import 'package:url_launcher/url_launcher.dart';
 
 class Contact extends StatefulWidget {
   
@@ -10,7 +15,57 @@ class Contact extends StatefulWidget {
 }
 
 class _ContactState extends State<Contact> {
+  // List<String> attachments = [];
+  // bool isHTML = false;
 
+  // final _recipientController = TextEditingController(
+  //   text: 'example@example.com',
+  // );
+
+  // final _subjectController = TextEditingController(text: 'The subject');
+
+  // final _bodyController = TextEditingController(
+  //   text: 'Mail body.',
+  // );
+
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // Future<void> send() async {
+  //   final Email email = Email(
+  //     body: "_bodyController.text",
+  //     subject: '_subjectController.text',
+  //     recipients: ['shishirsthz@gmail.com'],
+  //     // attachmentPaths: attachments,
+  //     isHTML: isHTML,
+  //   );
+
+  //   String platformResponse;
+
+  //   try {
+  //     await FlutterEmailSender.send(email);
+  //     platformResponse = 'success';
+  //   } catch (error) {
+  //     platformResponse = error.toString();
+  //   }
+
+  //   if (!mounted) return;
+
+  //   _scaffoldKey.currentState.showSnackBar(SnackBar(
+  //     content: Text(platformResponse),
+  //   ));
+  
+  
+  // launchMailto() async {
+  // final mailtoLink = Mailto(
+  //   to: ['shishirsthz@gmail.com'],
+  //   cc: ['cc1@example.com', 'cc2@example.com'],
+  //   subject: 'mailto example subject',
+  //   body: 'mailto example body',
+  // );
+  // // Convert the Mailto instance into a string.
+  // // Use either Dart's string interpolation
+  // // or the toString() method.
+  // await launch('$mailtoLink');
 
   @override
   Widget build(BuildContext context) {
@@ -153,11 +208,11 @@ class _ContactState extends State<Contact> {
                                 minWidth: 120.0,
                                 height: 55.0,
                                 child: RaisedButton(
+                                  onPressed: (){},
                                 shape: RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30.0),
                                 ),
                                 color: Colors.deepPurpleAccent,
-                                  onPressed: () {},
                                   child: const Text(
                                     'Submit',
                                     style: TextStyle(

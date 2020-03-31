@@ -18,11 +18,11 @@ class _ViewProfileStaffState extends State<ViewProfileStaff> {
   var staffData;
 
   void initState() {
-    _getStaffProfile();
+    _getProfile();
     super.initState();
   }
   
-  _getStaffProfile() async{
+  _getProfile() async{
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     String user = localStorage.get('user');
     var userDetail = json.decode(user); 

@@ -17,24 +17,24 @@ class StaffDashboard extends StatefulWidget {
 }
 
 class _StaffDashboardState extends State<StaffDashboard> {
-
+  var staffData;
   void initState() {
+    _getProfile();
     super.initState();
-    _getUserInfo();
-    CallApi().logout();
   }
-  var userData;
   
-  _getUserInfo() async {
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      var userJson = localStorage.getString('user'); 
-      var user = json.decode(userJson);
-      setState(() {
-        userData = user;
+  _getProfile() async{
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    String user = localStorage.get('user');
+    var userDetail = json.decode(user); 
+    var url = 'staff?phone=' + userDetail['phone'];
+    var res = await CallApi().getData(url);
+    var body = json.decode(res.body);
+    var staff = body['staff'][0];
+    setState(() {
+        staffData = staff;
       });
-      return userData;
-
-  }
+    }
   @override
   Widget build(BuildContext context) {
     
@@ -85,7 +85,7 @@ class _StaffDashboardState extends State<StaffDashboard> {
               color: Colors.indigoAccent,
             ),
             child: Padding(padding: EdgeInsets.only(top:30),
-            child:Text(("Namaste! ") + (userData!= null ? '${userData['name']}' : 'user'),
+            child:Text(("Namaste! ") + (staffData!= null ? '${staffData['name']}' : 'user'),
               style: TextStyle(
                 color: Colors.black,
                 fontFamily: "Open-Sans",

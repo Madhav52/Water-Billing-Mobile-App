@@ -257,18 +257,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var res = await CallApi().postData(data, 'login');
     var body = json.decode(res.body);
+    body['user']['token'] = body['token'];
     if (body['success'] == true) {
       if(body['user']['user_type'] == 'staff'){
         SharedPreferences localStorage = await SharedPreferences.getInstance();
-        localStorage.setString('token', body['token']);
         localStorage.setString('user', json.encode(body['user']));
+        localStorage.setString('token', body['token']);
         Navigator.push(context,
             new MaterialPageRoute(builder: (context) => StaffDashboard()));
       }
       if(body['user']['user_type'] == 'customer'){
         SharedPreferences localStorage = await SharedPreferences.getInstance();
-        localStorage.setString('token', body['token']);
         localStorage.setString('user', json.encode(body['user']));
+        localStorage.setString('token', body['token']);
         Navigator.push(context,
             new MaterialPageRoute(builder: (context) => CustomerDashboard()));
       }
