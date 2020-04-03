@@ -17,24 +17,25 @@ class StaffDashboard extends StatefulWidget {
 }
 
 class _StaffDashboardState extends State<StaffDashboard> {
-  var staffData;
+
   void initState() {
-    _getProfile();
     super.initState();
+    _getUserInfo();
   }
+  var userData;
   
-  _getProfile() async{
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    String user = localStorage.get('user');
-    var userDetail = json.decode(user); 
-    var url = 'staff?phone=' + userDetail['phone'];
-    var res = await CallApi().getData(url);
-    var body = json.decode(res.body);
-    var staff = body['staff'][0];
-    setState(() {
-        staffData = staff;
+  _getUserInfo() async {
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var userJson = localStorage.getString('user'); 
+      var user = json.decode(userJson);
+      
+      setState(() {
+        
+        userData = user;
+        print(userData);
       });
-    }
+
+  }
   @override
   Widget build(BuildContext context) {
     
@@ -85,7 +86,7 @@ class _StaffDashboardState extends State<StaffDashboard> {
               color: Colors.indigoAccent,
             ),
             child: Padding(padding: EdgeInsets.only(top:30),
-            child:Text(("Namaste! ") + (staffData!= null ? '${staffData['name']}' : 'user'),
+            child:Text(("Namaste! ") + (userData!= null ? '${userData['name']}' : 'user'),
               style: TextStyle(
                 color: Colors.black,
                 fontFamily: "Open-Sans",
@@ -136,7 +137,7 @@ class _StaffDashboardState extends State<StaffDashboard> {
               children: <Widget>[
                 InkWell(
                   onTap: (){
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => ViewProfileStaff()), );
                   },

@@ -13,6 +13,18 @@ class CallApi{
             headers: _setHeaders()
         );
     }
+    postData1(data, apiUrl) async {
+        var fullUrl = _url + apiUrl + await _getToken();
+        return await http.post(
+            fullUrl, 
+            body: jsonEncode(data), 
+            headers: {
+          'Content-type' : 'application/json',
+          'Accept' : 'application/json',
+          // 'Authorization' : token,
+          }
+        );
+    }
     getData1(apiUrl) async {
        var fullUrl = _url + apiUrl + await _getToken(); 
        return await http.get(
@@ -27,17 +39,24 @@ class CallApi{
          headers: _setHeaders()
        );
     }
+    getCategory(apiUrl) async {
+       var fullUrl = _url + apiUrl; 
+       return await http.get(
+         fullUrl, 
+         headers: _setHeaders()
+       );
+    }
     putData(data,token, apiUrl) async {
       var fullUrl = _url + apiUrl;
-      // print(token); 
       return await http.put(
         fullUrl,  
         body: jsonEncode(data), 
-        headers: {        
-        'Content-type' : 'application/json',
-        'Accept' : 'application/json',
-        'Authorization' : 'JDJ5JDEwJFdCLlA5MlBJWTJCR2pYek1vUVgxaXVKeXRVMVVheGpEQW9KS3BvWnNqd2NxaExoM3RhUmt5',
-        }
+        headers:{
+          'Content-type' : 'application/json',
+          'Accept' : 'application/json',
+          'Authorization' : token,
+          }
+        
       );
     }
     _setHeaders() => {

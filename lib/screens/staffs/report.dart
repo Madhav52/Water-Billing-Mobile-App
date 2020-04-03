@@ -1,7 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:mdi/mdi.dart';
 import '../../api.dart';
@@ -15,20 +16,53 @@ class Report extends StatefulWidget {
 }
 
 class _ReportState extends State<Report> {
+  TextEditingController messageController = TextEditingController();
+  String fileName;
+  var data = [];
+  // String _selectedCategory = 'Leakage';
+  String _selectedCategory;
+
+    void fetchCategory() async {
+      var apiUrl = "category";
+      
+      var res = await CallApi().getCategory(apiUrl);
+      
+      var data1 =jsonDecode(res.body)[0];
+      // print(data1);
+      // print(jsonEncode(data1) );
+      var a =[];
+      int l = data1.length;
+      // print(l);
+      for(var i=0;i<l;i++){
+        print(data1[i]);
+        a.add(data1[i].toString());
+      }
+      print(a);
+      // var result = jsonDecode(res);
+      // print(a);
+      setState(() {
+        data = a;
+      });
+      
+    }
+    
 
   void initState() {
     super.initState();
-    CallApi().logout();
+    fetchCategory();
   }
 
-   static final String uploadEndPoint =
-      'http://localhost/flutter_test/upload_image.php';
+
+  //  static final String uploadEndPoint =
+  //     'http://localhost/flutter_test/upload_image.php';
   Future<File> file;
   String status = '';
-  String base64Image;
+  // String base64Image;
   File tmpFile;
   String errMessage = 'Error Uploading Image';
- 
+
+  
+//  File file;
   chooseImage() {
     setState(() {
       file = ImagePicker.pickImage(source: ImageSource.gallery);
@@ -42,26 +76,82 @@ class _ReportState extends State<Report> {
     });
   }
  
-  startUpload() {
-    setStatus('Uploading Image...');
-    if (null == tmpFile) {
-      setStatus(errMessage);
-      return;
-    }
-    String fileName = tmpFile.path.split('/').last;
-    upload(fileName);
-  }
+//   startUpload() {
+//     setStatus('Uploading Image...');
+//     if (null == tmpFile) {
+//       setStatus(errMessage);
+//       return;
+//     }
+//     fileName = tmpFile.path.split('/').last;
+//     // upload(fileName);
+//   }
  
-  upload(String fileName) {
-    http.post(uploadEndPoint, body: {
-      "image": base64Image,
-      "name": fileName,
-    }).then((result) {
-      setStatus(result.statusCode == 200 ? result.body : errMessage);
-    }).catchError((error) {
-      setStatus(error);
+  // upload(String fileName) {
+  //   http.post(uploadEndPoint, body: {
+  //     "image": base64Image,
+  //     "name": fileName,
+  //   }).then((result) {
+  //     setStatus(result.statusCode == 200 ? result.body : errMessage);
+  //   }).catchError((error) {
+  //     setStatus(error);
+  //   });
+  // }
+  submit1() async{
+    
+    
+    // formdata.add
+    var message = messageController.text;
+    var image = file;
+    fileName = tmpFile.path.split('/').last;
+    // var image = base64Image;
+    var category = _selectedCategory;
+
+  FormData formdata = new FormData.fromMap({
+      "image_name": fileName,
+      "message": message,
+      "image": await MultipartFile.fromFile(tmpFile.path, filename: fileName)
     });
+
+    
+    print(formdata);
+    Dio dio = new Dio();
+    dio.options.headers = {
+        'Content-type': 'multipart/form-data',
+        'Accept': 'application/json'
+      };
+    var apiUrl = 'http://10.0.2.2:8000/api/report';
+    dio.post(apiUrl,data: formdata).then((response) => print(response));//.catchError((error) => print(error));
+      
+    // );
+    // print(res.body);
+  //     .then((response) => print(response))
+  // .catchError((error) => print(error));
+  
   }
+//   void _upload() async {
+//     File file;
+//    String fileName = file.path.split('/').last;
+//    var message = messageController.text;
+//     var image = file;
+//      var category = _selectedCategory;
+
+//    FormData data = FormData.fromMap({
+//       "file": await MultipartFile.fromFile(
+//         file.path,
+//         filename: fileName,
+//         'image':image,
+//       'image_name':fileName,
+//       'message':message,
+//       'category':category,
+//       ),
+//    });
+
+//   Dio dio = new Dio();
+
+//   dio.post("report", data: data)
+//   .then((response) => print(response))
+//   .catchError((error) => print(error));
+// }
  
   Widget showImage() {
     return FutureBuilder<File>(
@@ -70,11 +160,13 @@ class _ReportState extends State<Report> {
         if (snapshot.connectionState == ConnectionState.done &&
             null != snapshot.data) {
           tmpFile = snapshot.data;
-          base64Image = base64Encode(snapshot.data.readAsBytesSync());
-          return Flexible(
+          // base64Image = base64Encode(snapshot.data.readAsBytesSync());
+          return Container(
             child: Image.file(
               snapshot.data,
               fit: BoxFit.fill,
+              height: 80,
+              width: 130,
             ),
           );
         } else if (null != snapshot.error) {
@@ -97,9 +189,10 @@ class _ReportState extends State<Report> {
     MediaQueryData media = MediaQuery.of(context);
 
     final Size screenSize = media.size;
-    List<String> _category = ['Leakage', 'Broken', 'Missing', 'No Water']; 
-    String _selectedLocation;
+    // List<dynamic> data = [];
     
+    // String _selectedCategory;
+
     return new Scaffold(
      appBar: AppBar(
         title: new Text('View Profile'),
@@ -149,7 +242,7 @@ class _ReportState extends State<Report> {
               children: <Widget>[
                   new Container(
                     margin: EdgeInsets.only(top:35),
-                    height:550.0,
+                    height:600.0,
                     width: 350.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -190,19 +283,27 @@ class _ReportState extends State<Report> {
                           Container(
                             padding: EdgeInsets.fromLTRB(30, 10, 20, 0),
                             child: DropdownButton(
+                              // value: _selectedCategory,
                               hint: Text('Select One Complaints Category'),
-                              value: _selectedLocation,
+                              
+                              items:  data.map((category) 
+                              {
+                                return  DropdownMenuItem(
+                                  value: category,
+                                  child: new Text(category),
+                                  
+                                );
+                              }
+                              ).toList(),
                               onChanged: (newValue) {
+                                print(newValue);
+                                // _selectedCategory = newValue;
                                 setState(() {
-                                  _selectedLocation = newValue;
+                                  _selectedCategory = newValue;
+                                  print(_selectedCategory);
                                 });
                               },
-                              items: _category.map((category) {
-                                return DropdownMenuItem(
-                                  child: new Text(category),
-                                  value: category,
-                                );
-                              }).toList(),
+                              value: _selectedCategory,
                             ),
                           ),
                           Row(
@@ -224,6 +325,7 @@ class _ReportState extends State<Report> {
                           Container(
                             padding: EdgeInsets.fromLTRB(30, 0, 20, 0),
                             child: TextField(
+                              controller: messageController,
                               maxLines: 3,
                               keyboardType: TextInputType.text,
                               autofocus: false,
@@ -244,7 +346,7 @@ class _ReportState extends State<Report> {
                                   borderRadius: new BorderRadius.circular(30.0),
                                 ),
                                 color: Colors.deepPurpleAccent,
-                                  onPressed: () {},
+                                  onPressed: (){submit1();},
                                   child: const Text(
                                     'Submit',
                                     style: TextStyle(

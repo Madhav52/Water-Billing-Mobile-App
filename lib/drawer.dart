@@ -97,6 +97,7 @@ class _SideDrawerState extends State<SideDrawer> {
             'About Us',
             Icons.supervisor_account,
             () {
+              Navigator.pop(context);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) {
@@ -114,6 +115,7 @@ class _SideDrawerState extends State<SideDrawer> {
             'Our Mission',
             Icons.my_location,
             () {
+              Navigator.pop(context);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) {
@@ -133,6 +135,7 @@ class _SideDrawerState extends State<SideDrawer> {
             'Our Vision',
             Icons.wb_sunny,
             () {
+              Navigator.pop(context);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) {
@@ -150,6 +153,7 @@ class _SideDrawerState extends State<SideDrawer> {
             'Contact Us',
             Icons.contacts,
             () {
+              Navigator.pop(context);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) {
@@ -167,6 +171,7 @@ class _SideDrawerState extends State<SideDrawer> {
             'Rate Us',
             Icons.thumb_up,
             () {
+              Navigator.pop(context);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) {
@@ -184,6 +189,7 @@ class _SideDrawerState extends State<SideDrawer> {
             'Privacy Policy',
             Icons.verified_user,
             () {
+              Navigator.pop(context);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) {
@@ -201,6 +207,7 @@ class _SideDrawerState extends State<SideDrawer> {
             'About App',
             Icons.touch_app,
             () {
+              Navigator.pop(context);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) {

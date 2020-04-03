@@ -13,6 +13,37 @@ class UpdateProfileStaff extends StatefulWidget {
 }
 
 class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
+
+  void _showDialog(message) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Information Message"),
+          content: new Text(message),
+          elevation: 5,
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(18.0),
+            // side: BorderSide(color: Colors.red)
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close", 
+              style: TextStyle(color: Colors.red),
+              textDirection: TextDirection.ltr),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+
+          ],
+        );
+      },
+    );
+  }
   var staffData;
   var updatedData;
 
@@ -95,13 +126,14 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
       // + staffDetail['id'] + '&name=' + nameController.text + '&email=' + emailController.text + '&vdc=' + vdcController.text + '&ward=' + wardController.text;
       var response = await CallApi().putData(data, token ,'user/');
       // print(response);
-      print(response.statusCode);
+      print(jsonDecode(response.body)['data']['message'].toString());
       // print(response.body);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       // print(data1);
       // print(data1);
       await localStorage.setString('user', jsonEncode(data1));
       print(localStorage.get('user'));
+      return(jsonDecode(response.body)['data']['message'].toString());
     //  var res = await CallApi().getData(url);
     // var body = json.decode(res.body);
     // var staff = body['staff'][0];
@@ -255,10 +287,10 @@ class _UpdateProfileStaffState extends State<UpdateProfileStaff> {
                                   borderRadius: new BorderRadius.circular(30.0),
                                 ),
                                 color: Colors.deepPurpleAccent,
-                                  onPressed: () {
-                                    setState(() {
-                                      _updateStaffProfile();
-                                    });
+                                  onPressed: () async {
+                                    
+                                      var msg = await _updateStaffProfile();
+                                      _showDialog(msg);
                                     
                                   },
                                   child: const Text(

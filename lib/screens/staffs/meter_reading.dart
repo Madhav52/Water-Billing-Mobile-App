@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../api.dart';
 import '../../drawer.dart';
 import '../home.dart';
@@ -11,14 +14,38 @@ class MeterReading extends StatefulWidget {
 }
 
 class _MeterReadingState extends State<MeterReading> {
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController readingController = TextEditingController();
+
+  //controller 
+
+  //button onpress function to 
+  void reading() async{
+       var data = {
+      'phone': phoneController.text,
+      'reading': readingController.text
+    };
+
+    SharedPreferences localstorage = await SharedPreferences.getInstance();
+    String user = localstorage.get('user');
+    var result = jsonDecode(user);
+
+    data['id'] = result['id'].toString();
+
+    var apiUrl = "reading";
+    
+    var res = await CallApi().postData1(data, apiUrl);
+    print(res.body);
+
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
     MediaQueryData media = MediaQuery.of(context);
     final Size screenSize = media.size;
-    List<String> _custId = ['K0123', 'K0124', 'K0214', 'K0321', 'K0154']; 
-    String _selectedId;
-              
+   
     
     return new Scaffold(
       appBar: AppBar(
@@ -69,8 +96,8 @@ class _MeterReadingState extends State<MeterReading> {
               children: <Widget>[
                   new Container(
                     margin: EdgeInsets.only(top:30),
-                    height:420.0,
-                    width: 350.0,
+                    height:310.0,
+                    width: 370.0,
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
@@ -94,48 +121,21 @@ class _MeterReadingState extends State<MeterReading> {
                            ),
                           ),
                           Container(
-                            padding: EdgeInsets.fromLTRB(30, 10, 20, 0),
-                            child: DropdownButton(
-                              hint: Text('Select Customer Id'),
-                              value: _selectedId,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  _selectedId = newValue;
-                                });
-                              },
-                              items: _custId.map((custId) {
-                                return DropdownMenuItem(
-                                  child: new Text(custId),
-                                  value: custId,
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
                             child: TextField(
-                              keyboardType: TextInputType.datetime,
+                              controller: phoneController,
+                              keyboardType: TextInputType.number,
                               autofocus: false,
                               decoration: InputDecoration(
-                                icon: Icon(Mdi.calendar),
-                                labelText: "Reading Date",
+                                icon: Icon(Icons.phone_android),
+                                labelText: "Phone Number",
                               ),
                             ),
                           ),
                           Container(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: TextField(
-                              keyboardType: TextInputType.text,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.people),
-                                labelText: "Reader Name",
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                            child: TextField(
+                              controller: readingController,
                               keyboardType: TextInputType.number,
                               autofocus: false,
                               decoration: InputDecoration(
@@ -155,7 +155,9 @@ class _MeterReadingState extends State<MeterReading> {
                                   borderRadius: new BorderRadius.circular(30.0),
                                 ),
                                 color: Colors.deepPurpleAccent,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    reading();
+                                  },
                                   child: const Text(
                                     'Submit',
                                     style: TextStyle(
